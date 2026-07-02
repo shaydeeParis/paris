@@ -230,8 +230,11 @@ main{ max-width:760px; margin:0 auto; padding:26px 18px 10px; }
 
   <div class="hero-emblems">
     <div class="marianne-badge">
-      <!-- PLACEHOLDER: pega aquí el <svg>Republique_francaise.svg</svg> oficial de République Française -->
-      <div class="official-logo-slot" id="official-logo-hero">LOGO OFICIAL<br>RÉPUBLIQUE<br>FRANÇAISE<br></div>
+      <!-- PLACEHOLDER: pega aquí el <svg>...</svg> oficial de République Française -->
+      <div class="official-logo-slot" id="official-logo-hero" style="background:#fff; border-style:solid; border-color:rgba(255,255,255,0.3); padding:8px;">
+        <img src="Republique_francaise.svg" alt="Logo oficial República Francesa"
+             onerror="this.parentElement.innerHTML='⚠️ No se encontró<br>Republique_francaise.svg<br>en esta carpeta';this.parentElement.style.fontSize='8px';this.parentElement.style.color='#B5000C';">
+      </div>
     </div>
     <div class="pr-flag-badge">
       <svg viewBox="0 0 60 40" xmlns="http://www.w3.org/2000/svg">
@@ -242,7 +245,7 @@ main{ max-width:760px; margin:0 auto; padding:26px 18px 10px; }
         <path d="M0 0 L26 20 L0 40 Z" fill="#5B92C8"/>
         <path d="M9 20 L10.8 15.2 L12.6 20 L17.6 20 L13.6 23 L15.2 27.8 L10.8 25 L6.4 27.8 L8 23 L4 20 Z" fill="#FFFFFF"/>
       </svg>
-      <span><br>PUERTO RICO</span>
+      <span>DESDE<br>PUERTO RICO</span>
     </div>
   </div>
 
@@ -450,7 +453,10 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
 
   <div class="marianne-note">
     <!-- PLACEHOLDER: pega aquí el <svg>...</svg> oficial de République Française -->
-    <div class="official-logo-slot small" id="official-logo-inicio">LOGO<br>OFICIAL</div>
+    <div class="official-logo-slot small" id="official-logo-inicio" style="border-style:solid; padding:6px;">
+      <img src="Republique_francaise.svg" alt="Logo oficial República Francesa"
+           onerror="this.parentElement.innerHTML='⚠️ No encontrado';this.parentElement.style.fontSize='8px';">
+    </div>
     <p><strong>¿Quién es Marianne?</strong> Es la figura femenina que representa a la República Francesa — su busto está en cada alcaldía y documento oficial del país, con el gorro frigio (símbolo de la libertad desde la Revolución de 1789). No es una persona real: a lo largo de los años, mujeres famosas como Brigitte Bardot y Laetitia Casta han prestado su rostro para modelarla. La verán representada una y otra vez durante el viaje.</p>
   </div>
 
@@ -2164,7 +2170,10 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
 
 <footer>
   <!-- PLACEHOLDER: pega aquí el <svg>...</svg> oficial de République Française (version pequeña opcional) -->
-  <div class="official-logo-slot small" id="official-logo-footer" style="margin:0 auto 14px; border-color:var(--grey-300); color:var(--grey-600);">LOGO<br>OFICIAL</div>
+  <div class="official-logo-slot small" id="official-logo-footer" style="margin:0 auto 14px; border-color:var(--grey-300); border-style:solid; padding:6px;">
+    <img src="Republique_francaise.svg" alt="Logo oficial República Francesa"
+         onerror="this.parentElement.innerHTML='⚠️ No encontrado';this.parentElement.style.fontSize='8px';this.parentElement.style.color='var(--grey-600)';">
+  </div>
   <div class="tricolore"></div>
   <p>Itinerario preparado como guía flexible — verificar precios y horarios en las webs oficiales 1-2 semanas antes de cada actividad. Bon voyage, buon viaggio. 🌍</p>
 </footer>
