@@ -219,6 +219,94 @@ main{ max-width:760px; margin:0 auto; padding:26px 18px 10px; }
 .video-thumb .play-overlay i{ font-size:10px; margin-left:1px; }
 .vlabel.verified{ color:var(--blue); }
 </style>
+<style>
+.photo-slot{
+  width:100%; aspect-ratio:16/10; border:2px dashed var(--grey-300); border-radius:6px;
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px;
+  background:var(--grey-50); color:var(--grey-600); text-align:center; padding:16px; margin:12px 0;
+}
+.photo-slot i{ font-size:22px; color:var(--grey-300); }
+.photo-slot span{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; letter-spacing:0.03em; line-height:1.5; }
+.photo-slot.portrait{ aspect-ratio:3/4; max-width:200px; margin-left:auto; margin-right:auto; }
+.photo-slot img{ width:100%; height:100%; object-fit:cover; border-radius:4px; }
+.flag-row{ display:flex; gap:12px; margin:14px 0; }
+.flag-row .photo-slot{ flex:1; aspect-ratio:3/2; margin:0; }
+</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+.map-toggle{ display:flex; gap:8px; margin-bottom:14px; flex-wrap:wrap; }
+.map-toggle button{
+  padding:8px 14px; border-radius:999px; border:1px solid var(--grey-300); background:#fff;
+  font-family:'Work Sans', sans-serif; font-weight:600; font-size:12.5px; color:var(--grey-600); cursor:pointer;
+}
+.map-toggle button.active[data-layer="paris"]{ border-color:var(--blue); background:var(--blue-tint); color:var(--blue); }
+.map-toggle button.active[data-layer="disney"]{ border-color:#7A3FA0; background:#F1E8F7; color:#7A3FA0; }
+.map-toggle button.active[data-layer="italia"]{ border-color:var(--red); background:var(--red-tint); color:var(--red-deep); }
+#map{ width:100%; height:460px; border-radius:6px; border:1px solid var(--line); box-shadow:var(--shadow); }
+.map-pin{ width:26px; height:26px; border-radius:50% 50% 50% 0; transform:rotate(-45deg); display:flex; align-items:center; justify-content:center; box-shadow:0 1px 4px rgba(0,0,0,0.4); border:2px solid #fff;}
+.map-pin i{ transform:rotate(45deg); color:#fff; font-size:11px; }
+.leaflet-popup-content-wrapper{ border-radius:6px; }
+.map-popup{ font-family:'Work Sans', sans-serif; }
+.map-popup .mp-title{ font-family:'Spectral', serif; font-weight:600; font-size:15px; color:var(--ink); margin-bottom:2px;}
+.map-popup .mp-day{ font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:var(--grey-600); text-transform:uppercase; letter-spacing:0.04em;}
+</style>
+<style>
+.bot-fab{
+  position:fixed; bottom:20px; right:20px; z-index:200;
+  width:56px; height:56px; border-radius:50%; background:var(--blue); color:#fff;
+  border:none; box-shadow:0 4px 14px rgba(0,0,145,0.35); cursor:pointer;
+  display:flex; align-items:center; justify-content:center; font-size:20px;
+  transition:transform .15s;
+}
+.bot-fab:hover{ transform:scale(1.06); }
+.bot-fab .dot{ position:absolute; top:6px; right:6px; width:10px; height:10px; border-radius:50%; background:var(--red); border:2px solid #fff;}
+
+.bot-panel{
+  position:fixed; bottom:88px; right:20px; z-index:200;
+  width:340px; max-width:calc(100vw - 32px); height:480px; max-height:70vh;
+  background:#fff; border-radius:12px; border:1px solid var(--line);
+  box-shadow:0 12px 32px rgba(22,22,22,0.22);
+  display:flex; flex-direction:column; overflow:hidden;
+}
+.bot-panel[hidden]{ display:none; }
+.bot-head{
+  background:var(--blue); color:#fff; padding:13px 14px; display:flex; align-items:center; gap:10px;
+}
+.bot-head i.icn{ font-size:16px; }
+.bot-head .ti{ flex:1; }
+.bot-head .ti .t1{ font-family:'Spectral', serif; font-weight:600; font-size:15px; }
+.bot-head .ti .t2{ font-family:'IBM Plex Mono', monospace; font-size:9.5px; color:#C6C6FF; text-transform:uppercase; letter-spacing:0.05em;}
+.bot-head button{ background:none; border:none; color:#fff; font-size:16px; cursor:pointer; opacity:0.85; }
+
+.bot-body{ flex:1; overflow-y:auto; padding:14px; display:flex; flex-direction:column; gap:10px; background:var(--grey-50); }
+.bot-msg{ max-width:88%; font-size:13.3px; line-height:1.55; padding:9px 12px; border-radius:10px; }
+.bot-msg.bot{ background:#fff; border:1px solid var(--line); color:var(--ink); align-self:flex-start; border-bottom-left-radius:2px;}
+.bot-msg.user{ background:var(--blue); color:#fff; align-self:flex-end; border-bottom-right-radius:2px;}
+.bot-msg .go-link{
+  display:inline-flex; align-items:center; gap:5px; margin-top:8px;
+  background:var(--red); color:#fff; font-size:11.5px; font-weight:600;
+  padding:6px 11px; border-radius:999px; text-decoration:none; cursor:pointer; border:none;
+  font-family:'Work Sans', sans-serif;
+}
+
+.bot-chips{ display:flex; flex-wrap:wrap; gap:6px; padding:10px 14px 0; }
+.bot-chip{
+  font-size:11px; background:var(--blue-tint); color:var(--blue); border:none; border-radius:999px;
+  padding:6px 10px; cursor:pointer; font-family:'Work Sans', sans-serif; font-weight:600;
+}
+
+.bot-inputrow{ display:flex; gap:8px; padding:12px 14px; border-top:1px solid var(--line); background:#fff; }
+.bot-inputrow input{
+  flex:1; border:1px solid var(--grey-300); border-radius:999px; padding:9px 14px; font-size:13px;
+  font-family:'Work Sans', sans-serif; outline:none;
+}
+.bot-inputrow input:focus{ border-color:var(--blue); }
+.bot-inputrow button{
+  width:36px; height:36px; border-radius:50%; border:none; background:var(--blue); color:#fff;
+  cursor:pointer; flex-shrink:0; font-size:13px;
+}
+</style>
 </head>
 <body>
 
@@ -251,7 +339,7 @@ main{ max-width:760px; margin:0 auto; padding:26px 18px 10px; }
 
   <span class="hero-badge"><i class="fa-solid fa-compass"></i> Guía completa de viaje · Julio 2026</span>
   <h1>París <span>·</span> Disney <span>·</span> Italia</h1>
-  <p class="tagline">Todo lo que Marena y Shadyee Ann González necesitan — hora por hora, euro por euro, y por qué cada lugar importa.</p>
+  <p class="tagline">Todo lo que Marena y Shaydee Ann necesitan — hora por hora, euro por euro, y por qué cada lugar importa.</p>
   <div class="marianne-line"></div>
 </header>
 
@@ -263,6 +351,7 @@ main{ max-width:760px; margin:0 auto; padding:26px 18px 10px; }
   <button class="roundel" data-c="5" data-target="panel-despues"><span class="num">5</span>Después · Italia</button>
   <button class="roundel" data-c="6" data-target="panel-guia"><span class="num">6</span>Guía de supervivencia</button>
   <button class="roundel" data-c="7" data-target="panel-anexo"><span class="num">7</span>Anexo · Documento completo</button>
+  <button class="roundel" data-c="8" data-target="panel-mapa"><span class="num">8</span>Mapa</button>
 </nav>
 
 <main id="mainContent">
@@ -458,6 +547,10 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
            onerror="this.parentElement.innerHTML='⚠️ No encontrado';this.parentElement.style.fontSize='8px';">
     </div>
     <p><strong>¿Quién es Marianne?</strong> Es la figura femenina que representa a la República Francesa — su busto está en cada alcaldía y documento oficial del país, con el gorro frigio (símbolo de la libertad desde la Revolución de 1789). No es una persona real: a lo largo de los años, mujeres famosas como Brigitte Bardot y Laetitia Casta han prestado su rostro para modelarla. La verán representada una y otra vez durante el viaje.</p>
+    <div class="photo-slot portrait" id="photo-marianne">
+      <i class="fa-solid fa-image"></i>
+      <span>FOTO DE<br>MARIANNE<br>(busto oficial)</span>
+    </div>
   </div>
 
   <details class="acc">
@@ -473,6 +566,10 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
       <div class="divider" style="margin:18px 0;"><i class="fa-solid fa-flag"></i></div>
 
       <p><strong>¿Y la bandera azul-blanco-roja?</strong> Se impuso en julio de 1789, justo cuando Francia pasaba de monarquía a nación soberana. Antes de ser una bandera, el tricolor existió como escarapelas y cintas — una mezcla entre la moda de la época y la efervescencia política del momento. El orden definitivo de los colores (azul, blanco, rojo) se fijó recién en 1794.</p>
+      <div class="photo-slot" id="photo-bandera-francia">
+        <i class="fa-solid fa-image"></i>
+        <span>FOTO DE LA BANDERA FRANCESA</span>
+      </div>
 
       <p><strong>¿Qué significan los colores?</strong> Aquí viene lo interesante: no tienen un significado "oficial" profundo. Azul y rojo eran los colores de la ciudad de París y del uniforme de la Guardia Nacional; el blanco venía del estandarte real. Con el tiempo se construyó la leyenda popular de que representan la unión entre el rey (blanco) y el pueblo (azul y rojo) — pero los historiadores coinciden en que fue más una moda estética que un plan simbólico.</p>
 
@@ -481,6 +578,19 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
       <p><strong>El eco en las banderas de América.</strong> La Revolución Francesa de 1789 no se quedó en Francia — sus ideales de libertad, igualdad y derechos del hombre viajaron con ella. El propio Marqués de Lafayette peleó primero en la Revolución Americana (1775-83) junto a Washington, y volvió a Francia con esas ideas para ayudar a redactar la Declaración de los Derechos del Hombre. Fue una calle de dos vías: Estados Unidos inspiró a Francia, y después la Revolución Francesa — con su lenguaje visual de tricolores como símbolo de "somos una república libre, no una monarquía" — inspiró a su vez a los movimientos independentistas de toda América Latina en el siglo XIX.</p>
 
       <p><strong>Y aquí está el dato que las va a sorprender:</strong> la bandera de <strong>Puerto Rico</strong> no viene directamente de Francia, pero sí es "nieta" de esa misma cadena de ideales. Fue diseñada en 1895 por exiliados puertorriqueños en Nueva York, tomando como modelo casi exacto la bandera de <strong>Cuba</strong> (mismo diseño, colores invertidos) — y la bandera cubana, a su vez, fue diseñada en 1849 inspirándose abiertamente en la bandera de Estados Unidos: el triángulo azul con la estrella blanca representa la misma idea de "una nueva estrella entre las naciones libres" que evoca la bandera estadounidense. Es, literalmente, una cadena de banderas inspirándose unas a otras a través del continente — Francia y Estados Unidos primero, y desde ahí, Cuba y Puerto Rico.</p>
+
+      <p><strong>Pero la conexión más directa de todas está en Haití.</strong> Haití fue colonia francesa (Saint-Domingue) hasta que en 1804 se convirtió en la primera nación libre de América Latina y la primera república negra del mundo, tras la única revolución de esclavos exitosa de la historia. Su primera bandera se creó literalmente <strong>arrancando la franja blanca de la bandera francesa</strong> y cosiendo juntas las dos franjas restantes — azul y roja — como gesto simbólico de romper con Francia y con la esclavitud, conservando solo los colores que representaban al pueblo. Por eso, hasta hoy, la bandera de Haití es azul y roja: es literalmente una bandera francesa a la que le falta un pedazo, a propósito.</p>
+
+      <div class="flag-row">
+        <div class="photo-slot" id="photo-bandera-usa">
+          <i class="fa-solid fa-image"></i>
+          <span>FOTO DE LA<br>BANDERA DE EE.UU.</span>
+        </div>
+        <div class="photo-slot" id="photo-bandera-haiti">
+          <i class="fa-solid fa-image"></i>
+          <span>FOTO DE LA<br>BANDERA DE HAITÍ</span>
+        </div>
+      </div>
 
       <p style="margin-top:10px; font-size:12.5px; color:var(--grey-600);">Fuentes: <a href="https://www.info.gouv.fr/actualite/la-petite-histoire-de-marianne" target="_blank" rel="noopener">info.gouv.fr — La petite histoire de Marianne</a> · <a href="https://www.info.gouv.fr/actualite/la-petite-histoire-du-drapeau-tricolore" target="_blank" rel="noopener">info.gouv.fr — La petite histoire du drapeau tricolore</a></p>
     </div>
@@ -562,7 +672,7 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
   <details class="acc">
     <summary><i class="fa-solid fa-cloud-sun lead"></i>Clima y equipaje<i class="fa-solid fa-chevron-down chev"></i></summary>
     <div class="acc-body">
-      <p>Julio en París/Italia: 20-30°C, lluvias cortas ocasionales. Lleven capa ligera para la noche y un paraguas compacto.</p>
+      <p>Julio en París/Italia: 68-86°F (20-30°C), lluvias cortas ocasionales. Lleven capa ligera para la noche y un paraguas compacto.</p>
       <p>Calzado cómodo es NO negociable — caminarán 15,000-20,000 pasos diarios fácilmente.</p>
     </div>
   </details>
@@ -572,12 +682,21 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
   <h2 class="section-title">Antes · Exploración de París</h2>
   <p class="section-sub">10 al 15 de julio — seis días para conocer la ciudad</p>
 
-  <a class="video-card" href="https://www.youtube.com/watch?v=qR3y_yaaYPo" target="_blank" rel="noopener" style="margin-bottom:20px;">
+  <a class="video-card" href="https://www.youtube.com/watch?v=qR3y_yaaYPo" target="_blank" rel="noopener" style="margin-bottom:12px;">
     <div class="video-thumb"><img src="https://img.youtube.com/vi/qR3y_yaaYPo/mqdefault.jpg" alt="Miniatura del video" loading="lazy"><div class="play-overlay"><i class="fa-solid fa-play" style="color:#fff;"></i></div></div>
     <div class="video-info">
       <div class="vlabel verified">🇪🇸 ES · <i class="fa-solid fa-circle-check"></i> video introductorio</div>
       <div class="vtitle">París explicado — antes de empezar</div>
       <div class="vmeta">YouTube · vean este antes del Día 1</div>
+    </div>
+  </a>
+
+  <a class="video-card" href="https://www.youtube.com/watch?v=6PPgjjf0R64" target="_blank" rel="noopener" style="margin-bottom:20px;">
+    <div class="video-thumb"><img src="https://img.youtube.com/vi/6PPgjjf0R64/mqdefault.jpg" alt="Miniatura del video" loading="lazy"><div class="play-overlay"><i class="fa-solid fa-play" style="color:#fff;"></i></div></div>
+    <div class="video-info">
+      <div class="vlabel verified">🇪🇸 ES · <i class="fa-solid fa-circle-check"></i> video introductorio</div>
+      <div class="vtitle">Cómo entender París y sus distritos</div>
+      <div class="vmeta">YouTube · para ubicarse antes de llegar</div>
     </div>
   </a>
 
@@ -601,7 +720,15 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
           <div class="card-time">Aterrizaje</div>
           <div class="card-title">RER B al centro de París</div>
           <div class="card-meta"><span class="tag price">≈14€/persona</span></div>
-          <p class="card-how">Seguir letreros "RER B" desde llegadas. Comprar boleto en máquina (aceptan tarjeta) o taquilla. Validar antes de bajar al andén. 30-40 min hasta el centro.</p>
+          <p class="card-how">Seguir letreros "RER B" desde llegadas. Comprar boleto en máquina (aceptan tarjeta) o taquilla. Validar antes de bajar al andén. 30-40 min hasta el centro. Mapa y horarios de la línea: <a href="https://www.bonjour-ratp.fr/en/lignes-rer/" target="_blank" rel="noopener">bonjour-ratp.fr</a></p>
+          <a class="video-card" href="https://www.youtube.com/watch?v=7FWfz1FP7RE" target="_blank" rel="noopener" style="margin-top:10px;">
+            <div class="video-thumb"><img src="https://img.youtube.com/vi/7FWfz1FP7RE/mqdefault.jpg" alt="Miniatura del video" loading="lazy"><div class="play-overlay"><i class="fa-solid fa-play" style="color:#fff;"></i></div></div>
+            <div class="video-info">
+              <div class="vlabel verified">🇬🇧 EN · <i class="fa-solid fa-circle-check"></i> video verificado</div>
+              <div class="vtitle">4 Simple Ways to Get to Paris from CDG Airport</div>
+              <div class="vmeta">YouTube · video seleccionado</div>
+            </div>
+          </a>
         </div>
       </div>
       <details class="postcard">
@@ -668,9 +795,9 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
         <div class="postcard-body">
           <h5>De "farola trágica" a símbolo del mundo</h5>
           <p>En 1889, para celebrar 100 años de la Revolución Francesa, Gustave Eiffel construyó esta torre con un permiso de SOLO 20 años — después había que demolerla. Los parisinos la odiaban: la llamaban "una farola trágica" y cientos de artistas firmaron cartas exigiendo tumbarla. Se salvó porque, justo a tiempo, descubrieron que servía como antena de radio militar.</p>
-          <p><strong>Dato que conecta con casa:</strong> el mismo Gustave Eiffel diseñó el faro de Isla de Mona en Puerto Rico además del esqueleto interno de la Estatua de la Libertad en Nueva York — la estructura de metal que la sostiene por dentro es suya.</p>
+          <p><strong>Dato que conecta con casa:</strong> el mismo Gustave Eiffel diseñó el esqueleto interno de la Estatua de la Libertad en Nueva York — la estructura de metal que la sostiene por dentro es suya.</p>
         
-          <a class="video-card" href="https://www.youtube.com/watch?v=o9a_liqKDqQ&t=31s" target="_blank" rel="noopener">
+          <a class="video-card" href="https://www.youtube.com/watch?v=UxLvgPtz7Vo" target="_blank" rel="noopener">
             <div class="video-thumb"><img src="https://img.youtube.com/vi/UxLvgPtz7Vo/mqdefault.jpg" alt="Miniatura del video" loading="lazy"><div class="play-overlay"><i class="fa-solid fa-play" style="color:#fff;"></i></div></div>
             <div class="video-info">
               <div class="vlabel verified">🇪🇸 ES · <i class="fa-solid fa-circle-check"></i> video verificado</div>
@@ -724,7 +851,7 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
           <p>Antes de ser museo, el Louvre fue literalmente donde vivían los reyes de Francia. Cuando la Revolución Francesa decapitó a la monarquía en 1789, la nueva república abrió el palacio del rey y su colección de arte al público en 1793 — una idea radical para la época: el arte ya no le pertenecía a un rey, le pertenecía "al pueblo".</p>
           <p>Sobre la Mona Lisa: no siempre fue tan famosa. Se volvió ícono mundial en gran parte porque en 1911 alguien la ROBÓ (un trabajador italiano que pensaba que debía estar en Italia) — el robo apareció en periódicos de todo el mundo y la convirtió en la pintura más famosa del planeta.</p>
         
-          <a class="video-card" href="https://www.youtube.com/watch?v=JkPcA8dngB4" target="_blank" rel="noopener">
+          <a class="video-card" href="https://www.youtube.com/watch?v=mMggTkdN3Eo" target="_blank" rel="noopener">
             <div class="video-thumb"><img src="https://img.youtube.com/vi/mMggTkdN3Eo/mqdefault.jpg" alt="Miniatura del video" loading="lazy"><div class="play-overlay"><i class="fa-solid fa-play" style="color:#fff;"></i></div></div>
             <div class="video-info">
               <div class="vlabel verified">🇪🇸 ES · <i class="fa-solid fa-circle-check"></i> video verificado</div>
@@ -782,7 +909,7 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
           <h5>La catedral que se niega a desaparecer</h5>
           <p>La construcción de Notre-Dame empezó en 1163 y tomó casi 200 años en terminarse — los albañiles que la empezaron nunca vivieron para verla acabada. Aquí Napoleón se coronó a sí mismo Emperador en 1804 (le arrebató la corona al Papa de las manos: el poder ya no venía de la Iglesia, venía de él mismo). En 2019 un incendio destruyó gran parte del techo y la aguja — el mundo entero donó dinero para reconstruirla, y reabrió en 2024.</p>
         
-          <a class="video-card" href="https://www.youtube.com/watch?v=pYFa6UGujVg" target="_blank" rel="noopener">
+          <a class="video-card" href="https://www.youtube.com/watch?v=wvtoJ7Dyj1A" target="_blank" rel="noopener">
             <div class="video-thumb"><img src="https://img.youtube.com/vi/wvtoJ7Dyj1A/mqdefault.jpg" alt="Miniatura del video" loading="lazy"><div class="play-overlay"><i class="fa-solid fa-play" style="color:#fff;"></i></div></div>
             <div class="video-info">
               <div class="vlabel verified">🇪🇸 ES · <i class="fa-solid fa-circle-check"></i> video verificado</div>
@@ -1058,16 +1185,20 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
       </div>
     </div>
     <details class="postcard">
-      <summary><i class="fa-solid fa-stamp"></i> Don’t Make These 10 mistakes in Disneyland PARIS</summary>
+      <summary><i class="fa-solid fa-stamp"></i> 10 Disneyland Paris Mistakes! </summary>
       <div class="postcard-body">
         <h5>De "Don’t Make These 10 Disneyland Paris Mistakes! 😱 | Tips & Advice 🏰</h5>
-        <p>CDuring my recent trip to Disneyland Paris, I realised there are a few big mistakes that can seriously ruin your visit, especially if you’re going for the first time! 😬.</p>
+        <p>During my recent trip to Disneyland Paris, I realised there are a few big mistakes that can seriously ruin your visit, especially if you’re going for the first time! 😬
+
+In this video, I share the Top 10 Mistakes to Avoid at Disneyland Paris... things I’ve learned the hard way so you don’t have to. Whether you’re a first-timer or a regular visitor, these tips will help you make the most of your magical trip ✨
+
+Hopefully this video helps you plan better and have the best Disney experience ever! 🏰💫</p>
       
           <a class="video-card" href="https://www.youtube.com/watch?v=Dwc79xpIcWc" target="_blank" rel="noopener">
             <div class="video-thumb"><i class="fa-brands fa-youtube"></i></div>
             <div class="video-info">
-              <div class="vlabel">🇬🇧 EN · Don’t Make These 10 Disneyland Paris Mistakes</div>
-              <div class="vtitle">Buscar: "Don’t Make These 10 Disneyland Paris Mistakes"</div>
+              <div class="vlabel">🇬🇧 EN · video sugerido</div>
+              <div class="vtitle">Buscar: "Don’t Make These 10 Disneyland Paris Mistakes! 😱 | Tips & Advice 🏰"</div>
               <div class="vmeta">YouTube · ~5 min aprox.</div>
             </div>
           </a>
@@ -1570,7 +1701,7 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
 </ul>
 <h3>Clima y equipaje</h3>
 <ul>
-<li>Julio en París/Italia: 20-30°C, ocasionales lluvias cortas. Lleven capa ligera para la noche y un paraguas/rompevientos compacto.</li>
+<li>Julio en París/Italia: 68-86°F (20-30°C), ocasionales lluvias cortas. Lleven capa ligera para la noche y un paraguas/rompevientos compacto.</li>
 <li>Calzado cómodo es NO negociable — caminarán 15,000-20,000 pasos diarios fácilmente.</li>
 </ul>
 <hr />
@@ -2214,6 +2345,21 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
   </div>
 </section>
 
+<section id="panel-mapa" hidden>
+  <h2 class="section-title">Mapa del viaje</h2>
+  <p class="section-sub">Referencia visual de todas las paradas — toca un pin para ver el detalle</p>
+
+  <div class="map-toggle" id="mapToggle">
+    <button class="active" data-layer="paris"><i class="fa-solid fa-map-pin"></i> París</button>
+    <button data-layer="disney"><i class="fa-solid fa-map-pin"></i> Disney</button>
+    <button data-layer="italia"><i class="fa-solid fa-map-pin"></i> Italia (Milán + Roma)</button>
+  </div>
+
+  <div id="map"></div>
+
+  <p style="margin-top:12px; font-size:12px; color:var(--grey-600);">Mapa con <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a>, vía Leaflet.js — sin necesidad de cuenta ni llave de API.</p>
+</section>
+
 <footer>
   <!-- PLACEHOLDER: pega aquí el <svg>...</svg> oficial de République Française (version pequeña opcional) -->
   <div class="official-logo-slot small" id="official-logo-footer" style="margin:0 auto 14px; border-color:var(--grey-300); border-style:solid; padding:6px;">
@@ -2223,6 +2369,31 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
   <div class="tricolore"></div>
   <p>Itinerario preparado como guía flexible — verificar precios y horarios en las webs oficiales 1-2 semanas antes de cada actividad. Bon voyage, buon viaggio. 🌍</p>
 </footer>
+
+<!-- ========== ASISTENTE DEL VIAJE (bot local, sin backend) ========== -->
+<button class="bot-fab" id="botFab" aria-label="Abrir asistente"><i class="fa-solid fa-comment-dots"></i><span class="dot"></span></button>
+
+<div class="bot-panel" id="botPanel" hidden>
+  <div class="bot-head">
+    <i class="fa-solid fa-compass icn"></i>
+    <div class="ti">
+      <div class="t1">Asistente del viaje</div>
+      <div class="t2">Busca en toda la guía</div>
+    </div>
+    <button id="botClose" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+
+  <div class="bot-chips" id="botChips"></div>
+
+  <div class="bot-body" id="botBody">
+    <div class="bot-msg bot">🥖 Bonjour, Marena ! Bonjour, Shaydee ! 🇫🇷 Comment allez-vous aujourd'hui ? <em>(¿Cómo están hoy?)</em> 🗼🧀<br><br>Pregúntenme algo del viaje — precios, horarios, transporte, qué ponerse... Lo que no sepa, les diré dónde buscar. ✨</div>
+  </div>
+
+  <div class="bot-inputrow">
+    <input type="text" id="botInput" placeholder="Ej: ¿cuánto cuesta el Louvre?" />
+    <button id="botSend" aria-label="Enviar"><i class="fa-solid fa-paper-plane"></i></button>
+  </div>
+</div>
 
 <script>
   const roundels = document.querySelectorAll('.roundel');
@@ -2234,6 +2405,7 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
     'panel-despues': document.getElementById('panel-despues'),
     'panel-guia': document.getElementById('panel-guia'),
     'panel-anexo': document.getElementById('panel-anexo'),
+    'panel-mapa': document.getElementById('panel-mapa'),
   };
   roundels.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2243,6 +2415,9 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
         if (id === btn.dataset.target) { el.hidden = false; } else { el.hidden = true; }
       });
       window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (btn.dataset.target === 'panel-mapa') {
+        setTimeout(() => { if (window.tripMap) window.tripMap.invalidateSize(); }, 150);
+      }
     });
   });
 
@@ -2275,6 +2450,290 @@ footer .tricolore{ height:3px; max-width:120px; margin:0 auto 16px; background:l
       italyContents.forEach(c => c.classList.toggle('active', c.id === target));
     });
   });
+
+  // ---------------- MAPA ----------------
+  const PARIS_PLACES = [
+    { name: "Torre Eiffel", day: "Día 2", lat: 48.8584, lng: 2.2945 },
+    { name: "Crucero por el Sena (embarque)", day: "Día 2", lat: 48.8600, lng: 2.2958 },
+    { name: "Museo del Louvre", day: "Día 3", lat: 48.8606, lng: 2.3376 },
+    { name: "Jardín de las Tullerías", day: "Día 3", lat: 48.8635, lng: 2.3272 },
+    { name: "Notre-Dame", day: "Día 4", lat: 48.8530, lng: 2.3499 },
+    { name: "Sainte-Chapelle", day: "Día 4", lat: 48.8554, lng: 2.3450 },
+    { name: "Île Saint-Louis (Berthillon)", day: "Día 4", lat: 48.8514, lng: 2.3567 },
+    { name: "Trocadéro (fuegos artificiales)", day: "Día 4 · noche", lat: 48.8626, lng: 2.2872 },
+    { name: "Montmartre + Sacré-Cœur", day: "Día 5", lat: 48.8867, lng: 2.3431 },
+    { name: "Arco del Triunfo", day: "Día 5", lat: 48.8738, lng: 2.2950 },
+    { name: "Museo del Titanic — La Villette", day: "Día 5 (opcional)", lat: 48.8934, lng: 2.3925 },
+    { name: "Palacio de Versalles", day: "Día 6", lat: 48.8049, lng: 2.1204 },
+    { name: "Musée du Quai Branly", day: "Evento · 19 jul", lat: 48.8606, lng: 2.2977 },
+  ];
+
+  const DISNEY_PLACES = [
+    { name: "Hotel Cheyenne", day: "16-20 jul", lat: 48.8656, lng: 2.7955 },
+    { name: "Disneyland Park", day: "17-18 jul", lat: 48.8722, lng: 2.7761 },
+  ];
+
+  const ITALIA_PLACES = [
+    { name: "Duomo di Milano", day: "Milán · Día 2", lat: 45.4642, lng: 9.1900 },
+    { name: "La Última Cena (Santa Maria delle Grazie)", day: "Milán · Día 2", lat: 45.4661, lng: 9.1706 },
+    { name: "Castello Sforzesco", day: "Milán · Día 2", lat: 45.4705, lng: 9.1791 },
+    { name: "Navigli", day: "Milán · Día 2 (noche)", lat: 45.4514, lng: 9.1740 },
+    { name: "Varenna (Lago di Como)", day: "Milán · Día 3", lat: 46.0167, lng: 9.2833 },
+    { name: "Bellagio (Lago di Como)", day: "Milán · Día 3", lat: 45.9860, lng: 9.2572 },
+    { name: "Coliseo + Foro Romano", day: "Roma · Día 2", lat: 41.8902, lng: 12.4922 },
+    { name: "Fontana di Trevi", day: "Roma · Día 2", lat: 41.9009, lng: 12.4833 },
+    { name: "Panteón", day: "Roma · Día 2", lat: 41.8986, lng: 12.4769 },
+    { name: "Museos Vaticanos + Capilla Sixtina", day: "Roma · Día 3", lat: 41.9065, lng: 12.4536 },
+    { name: "Basílica de San Pedro", day: "Roma · Día 3", lat: 41.9022, lng: 12.4539 },
+  ];
+
+  const mapEl = document.getElementById('map');
+  if (mapEl && window.L) {
+    const map = L.map('map', { scrollWheelZoom: false }).setView([48.8566, 2.3522], 12);
+    window.tripMap = map;
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 19
+    }).addTo(map);
+
+    function pinIcon(color) {
+      return L.divIcon({
+        className: '',
+        html: `<div class="map-pin" style="background:${color};"><i class="fa-solid fa-star"></i></div>`,
+        iconSize: [26, 26],
+        iconAnchor: [13, 26],
+        popupAnchor: [0, -24]
+      });
+    }
+
+    function buildLayer(places, color) {
+      const group = L.layerGroup();
+      places.forEach(p => {
+        L.marker([p.lat, p.lng], { icon: pinIcon(color) })
+          .bindPopup(`<div class="map-popup"><div class="mp-day">${p.day}</div><div class="mp-title">${p.name}</div></div>`)
+          .addTo(group);
+      });
+      return group;
+    }
+
+    const layers = {
+      paris: buildLayer(PARIS_PLACES, '#000091'),
+      disney: buildLayer(DISNEY_PLACES, '#7A3FA0'),
+      italia: buildLayer(ITALIA_PLACES, '#E1000F'),
+    };
+
+    const bounds = {
+      paris: L.latLngBounds(PARIS_PLACES.map(p => [p.lat, p.lng])),
+      disney: L.latLngBounds(DISNEY_PLACES.map(p => [p.lat, p.lng])),
+      italia: L.latLngBounds(ITALIA_PLACES.map(p => [p.lat, p.lng])),
+    };
+
+    layers.paris.addTo(map);
+
+    document.querySelectorAll('#mapToggle button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const key = btn.dataset.layer;
+        const isActive = btn.classList.contains('active');
+        btn.classList.toggle('active');
+        if (isActive) {
+          map.removeLayer(layers[key]);
+        } else {
+          layers[key].addTo(map);
+          map.flyToBounds(bounds[key], { padding: [40, 40], maxZoom: 14, duration: 0.6 });
+        }
+      });
+    });
+  }
+
+  // ---------------- ASISTENTE DEL VIAJE (bot local) ----------------
+  function goToSection(panelId, dayId, italyChoice) {
+    const navBtn = document.querySelector(`.roundel[data-target="${panelId}"]`);
+    if (navBtn) navBtn.click();
+
+    setTimeout(() => {
+      if (italyChoice) {
+        const ib = document.querySelector(`.italy-btn[data-italy="${italyChoice}"]`);
+        if (ib) ib.click();
+      }
+      if (dayId) {
+        setTimeout(() => {
+          const dayBtn = document.querySelector(`.day-tab[data-day="${dayId}"]`);
+          if (dayBtn) dayBtn.click();
+        }, italyChoice ? 60 : 0);
+      }
+      document.getElementById('botPanel').hidden = true;
+    }, 80);
+  }
+
+  const BOT_KB = [
+    { kw: ["ok","okay","vale","listo","eso es todo","nada mas","nada más","chao","adios","adiós","bye","hasta luego","ya esta","ya está"], a: "¡Perfecto! 👋 Aquí estoy cuando me necesiten — solo toquen el botón de nuevo. ¡Buen viaje, Marena y Shaydee! 🗼✈️" },
+    { kw: ["genial","bien","excelente","perfecto","super","súper","buenisimo","buenísimo","dale","chevere","chévere","bacano","brutal"], a: "¡Qué bueno! 😄 Oye, ya que estamos hablando... ¿ya probaron una crêpe? Las venden en carritos por toda la ciudad, dulces (Nutella, azúcar y limón) o saladas tipo 'galette' (jamón y queso). Es de las cosas más ricas y baratas para comer caminando. Pregúntame \"comida francesa\" si quieres más ideas. 🥞" },
+    { kw: ["gracias","thank you","merci"],  a: "¡De nada! 😊 Aquí estoy si necesitan algo más — y si quieren ideas extra, pregúntenme por \"comida francesa\" o \"baile urbano\". ¡Que disfruten! 🗼" },
+    { kw: ["hola","buenas","hey","hi"], a: "¡Hola de nuevo! 👋 ¿En qué les ayudo? Puedo hablarte de precios, transporte, clima de hoy, o hasta dónde ver baile urbano en París si quieres." },
+    { kw: ["crepa","crêpe","crepe","galette","comida francesa","que comer","qué comer","comida tipica","comida típica","fast food","comida rapida","comida rápida"], a: "🥞 Las crêpes son un básico — dulces (Nutella, azúcar, limón) o saladas tipo 'galette' (jamón, queso, huevo). Cuestan 3-6€ en carritos callejeros. Para algo más de sentarse: pruébenla panadería-cadena 'Paul' (croissants, sándwiches) o el fast food francés 'Quick' — ninguno de los dos existe en Puerto Rico, así que vale la pena probarlos solo por la novedad. Y no se vayan sin un macaron de verdad (Ladurée o Pierre Hermé, un poco más caros pero icónicos)." },
+    { kw: ["baile urbano","street dance","breakdance","break dance","dance","bailar","donde bailan","dónde bailan","hip hop","hip-hop"], a: "💃 ¡Perfecto para Marena! La Explanada del Trocadéro (justo frente a la Torre Eiffel) es uno de los puntos más famosos de París para ver breakdancers y bailarines callejeros a diario, con la torre de fondo — muchos van ahí específicamente a grabar contenido. La plaza de Beaubourg (frente al Centre Pompidou) es otro punto clásico de baile urbano y acrobacias callejeras. Dato curioso: 'Juste Debout', una de las competencias de street dance más prestigiosas del mundo, nació en Francia — si las fechas coinciden, vale la pena buscar en justedebout.com si hay algún evento mientras están allá." },
+    { kw: ["macaron","macarrón","laduree","ladurée"], a: "🇫🇷 Los macarons originales franceses (no confundir con el coco macaroon) son de Ladurée o Pierre Hermé — tienen tiendas en varios puntos de París. Son carito (2-3€ cada uno) pero es una experiencia clásica." },
+    { kw: ["eiffel","torre eiffel"], a: "La Torre Eiffel cuesta entre 22,60€ y 36,70€ según el nivel. Se reserva con hasta 60 días de antelación en toureiffel.paris. La visitan el Día 2 (11 julio).", go: ["panel-antes","a2"] },
+    { kw: ["louvre","mona lisa"], a: "El Louvre cuesta 32€/persona (tarifa no-UE, desde enero 2026). Reserva obligatoria en julio-agosto en tickets.louvre.fr. Cerrado los martes. Lo visitan el Día 3 (12 julio).", go: ["panel-antes","a3"] },
+    { kw: ["versalles","versailles"], a: "El Passport de Versalles (Palacio+Jardines+Trianones) cuesta ~32€/persona. Cerrado los lunes. Lo visitan el Día 6 (15 julio), con traslado a Disney esa misma noche.", go: ["panel-antes","a6"] },
+    { kw: ["notre dame","notre-dame","catedral"], a: "La entrada a Notre-Dame es GRATIS (torres 16€, cripta 9€). La reserva de horario abre solo 2-3 días antes en resa.notredamedeparis.fr. La visitan el Día 4 (13 julio).", go: ["panel-antes","a4"] },
+    { kw: ["sainte-chapelle","sainte chapelle","vitrales"], a: "Sainte-Chapelle cuesta ~13€/persona. Se visita el mismo Día 4 (13 julio), junto con Notre-Dame.", go: ["panel-antes","a4"] },
+    { kw: ["fuegos","fireworks","14 de julio","bastilla","desfile"], a: "Ojo: los fuegos artificiales 2026 son EXCEPCIONALMENTE el 13 de julio (no el 14). El desfile militar sí es el 14 por la mañana. Todo el detalle está en el Día 4 y Día 5.", go: ["panel-antes","a4"] },
+    { kw: ["montmartre","sacre coeur","sacré-cœur"], a: "Montmartre + Sacré-Cœur se visita el Día 5 (14 julio), temprano en la mañana para evitar multitudes. Entrada gratis.", go: ["panel-antes","a5"] },
+    { kw: ["arco del triunfo","arc de triomphe"], a: "El Arco del Triunfo (subida ~16€/persona) está agregado como parada opcional el Día 5, después del desfile militar.", go: ["panel-antes","a5"] },
+    { kw: ["titanic"], a: "El Museo del Titanic en La Villette cuesta 26,25€ adulto / 18,50€ niño. Confirmado abierto el 14 de julio pese a ser feriado. Es actividad opcional del Día 5.", go: ["panel-antes","a5"] },
+    { kw: ["rer b","aeropuerto","cdg","llegada"], a: "Del aeropuerto CDG al centro: RER B, ~14€/persona, 30-40 min. Sale cada 10-15 min. Todo el detalle de llegada está en el Día 1.", go: ["panel-antes","a1"] },
+    { kw: ["paris visite","metro","transporte","pase"], a: "El Paris Visite (zonas 1-5) cuesta desde 30,60€/día hasta 78€ por 5 días, e incluye metro, RER, bus y el trayecto al aeropuerto. Todo el detalle está en el Kit Práctico.", go: ["panel-kit"] },
+    { kw: ["carteristas","robo","seguridad","pickpocket"], a: "Los lugares de más riesgo son el RER B, la línea 1 del metro, y alrededores de la Torre Eiffel/Louvre. Los consejos concretos (tácticas y cómo evitarlas) están en la Guía de supervivencia.", go: ["panel-guia"] },
+    { kw: ["clima","ropa","que ponerse","equipaje","temperatura"], a: "Julio en París/Italia: 68-86°F (20-30°C), con lluvias cortas ocasionales. Capa ligera para la noche + calzado muy cómodo. Detalle en el Kit Práctico.", go: ["panel-kit"] },
+    { kw: ["esim","wifi","datos","internet","celular"], a: "Si no tienen plan internacional, una eSIM (Airalo u Holafly) instalada antes de salir de Puerto Rico da datos apenas aterrizan. Todo el detalle de apps está en la Guía de supervivencia.", go: ["panel-guia"] },
+    { kw: ["propina","tip"], a: "En Francia e Italia el servicio ya está incluido por ley — no es obligatorio dejar propina, aunque redondear es un gesto apreciado.", go: ["panel-guia"] },
+    { kw: ["disney","disneyland","cheyenne"], a: "El bloque de Disneyland Paris / Dance the World es del 16 al 20 de julio, ya organizado por el evento. Check-in 16 jul, 3:00pm en Hotel Cheyenne.", go: ["panel-evento"] },
+    { kw: ["milan","milán","duomo","ultima cena","última cena"], a: "En Milán: Duomo (~10-25€) y La Última Cena (15€, ¡reservar con MESES de anticipación en cenacolovinciano.org!). Día 2 de la opción Milán+Como.", go: ["panel-despues","m2","milan"] },
+    { kw: ["como","lago di como","varenna","bellagio"], a: "El Lago di Como se visita como excursión de un día desde Milán — tren a Varenna (~7-13€) + ferry a Bellagio (~5-15€). Es el Día 3 de la opción Milán+Como.", go: ["panel-despues","m3","milan"] },
+    { kw: ["roma","coliseo","coliseo romano","gladiadores"], a: "El Coliseo + Foro Romano cuesta ~18€/persona (reservar 1-2 meses antes en ticketing.colosseo.it, entrada nominativa). Es el Día 2 de la opción Roma.", go: ["panel-despues","r2","roma"] },
+    { kw: ["vaticano","capilla sixtina","san pedro"], a: "Museos Vaticanos + Capilla Sixtina cuestan ~25€/persona en tickets.museivaticani.va — única web oficial. Es el Día 3 de la opción Roma.", go: ["panel-despues","r3","roma"] },
+    { kw: ["mapa","ubicacion","donde queda","donde esta"], a: "Todos los lugares del itinerario están geolocalizados en la pestaña Mapa, con pines por color según sea París, Disney o Italia.", go: ["panel-mapa"] },
+    { kw: ["marianne","bandera","simbolo"], a: "El origen de Marianne y la bandera tricolor —y su conexión con Haití, Cuba y Puerto Rico— está explicado en el panel de Inicio.", go: ["panel-inicio"] },
+    { kw: ["hotel","hospedaje","donde quedarse","alojamiento"], a: "La zona recomendada es Châtelet-Les Halles / Le Marais: céntrica, caminable a Notre-Dame y Louvre, y con el RER A directo a Disneyland (~40 min sin transbordos).", go: ["panel-kit"] },
+    { kw: ["quai branly","rooftop"], a: "El Rooftop Performance es el 19 de julio en el Musée du Quai Branly, 3:30pm encuentro, 4:30pm show.", go: ["panel-evento"] },
+  ];
+
+  function botAnswer(query) {
+    const q = query.toLowerCase();
+    let best = null, bestScore = 0;
+    BOT_KB.forEach(entry => {
+      entry.kw.forEach(k => {
+        if (q.includes(k)) {
+          const score = k.length;
+          if (score > bestScore) { bestScore = score; best = entry; }
+        }
+      });
+    });
+    return best;
+  }
+
+  function addBotMsg(text, isUser, goTarget) {
+    const body = document.getElementById('botBody');
+    const div = document.createElement('div');
+    div.className = 'bot-msg ' + (isUser ? 'user' : 'bot');
+    div.textContent = text;
+    if (goTarget) {
+      const btn = document.createElement('button');
+      btn.className = 'go-link';
+      btn.innerHTML = '<i class="fa-solid fa-arrow-right"></i> Ver en la guía';
+      btn.onclick = () => goToSection(...goTarget);
+      div.appendChild(document.createElement('br'));
+      div.appendChild(btn);
+    }
+    body.appendChild(div);
+    body.scrollTop = body.scrollHeight;
+  }
+
+  function handleBotQuery(text) {
+    if (!text.trim()) return;
+    addBotMsg(text, true);
+    const qLower = text.toLowerCase();
+    const isWeatherQuery = WEATHER_KEYWORDS.some(k => qLower.includes(k));
+    if (isWeatherQuery) {
+      handleWeatherQuery();
+      return;
+    }
+    const match = botAnswer(text);
+    setTimeout(() => {
+      if (match) {
+        addBotMsg(match.a, false, match.go);
+      } else {
+        addBotMsg('Mmm, esa no la tengo exacta 🤔 — pero cuéntame más o intenta con otra palabra (ej: "Louvre", "transporte", "clima", "Roma", "baile urbano", "comida francesa"). Si prefieres, el Anexo tiene el documento completo con todo el detalle.', false, ["panel-anexo"]);
+      }
+    }, 250);
+  }
+
+  const QUICK_CHIPS = ["¿Qué me pongo hoy?", "Comida francesa", "¿Dónde ver baile urbano?", "Precio Torre Eiffel", "Transporte del aeropuerto", "Coliseo Roma", "Carteristas", "Hotel recomendado"];
+  const chipsWrap = document.getElementById('botChips');
+  QUICK_CHIPS.forEach(c => {
+    const b = document.createElement('button');
+    b.className = 'bot-chip';
+    b.textContent = c;
+    b.onclick = () => handleBotQuery(c);
+    chipsWrap.appendChild(b);
+  });
+
+  const botFab = document.getElementById('botFab');
+  const botPanel = document.getElementById('botPanel');
+  botFab.addEventListener('click', () => { botPanel.hidden = !botPanel.hidden; });
+  document.getElementById('botClose').addEventListener('click', () => { botPanel.hidden = true; });
+
+  const botInput = document.getElementById('botInput');
+  document.getElementById('botSend').addEventListener('click', () => {
+    handleBotQuery(botInput.value);
+    botInput.value = '';
+  });
+  botInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      handleBotQuery(botInput.value);
+      botInput.value = '';
+    }
+  });
+
+  // ---------------- CLIMA EN VIVO — Open-Meteo (gratis, sin API key) ----------------
+  const WEATHER_CODES = {
+    0: ["Despejado", "☀️"], 1: ["Mayormente despejado", "🌤️"], 2: ["Parcialmente nublado", "⛅"], 3: ["Nublado", "☁️"],
+    45: ["Niebla", "🌫️"], 48: ["Niebla con escarcha", "🌫️"],
+    51: ["Llovizna ligera", "🌦️"], 53: ["Llovizna", "🌦️"], 55: ["Llovizna densa", "🌧️"],
+    61: ["Lluvia ligera", "🌦️"], 63: ["Lluvia", "🌧️"], 65: ["Lluvia fuerte", "🌧️"],
+    71: ["Nieve ligera", "🌨️"], 73: ["Nieve", "🌨️"], 75: ["Nieve fuerte", "❄️"],
+    80: ["Chubascos ligeros", "🌦️"], 81: ["Chubascos", "🌧️"], 82: ["Chubascos fuertes", "⛈️"],
+    95: ["Tormenta", "⛈️"], 96: ["Tormenta con granizo", "⛈️"], 99: ["Tormenta fuerte", "⛈️"],
+  };
+
+  async function fetchParisWeather() {
+    const url = "https://api.open-meteo.com/v1/forecast?latitude=48.8566&longitude=2.3522&current=temperature_2m,precipitation,weather_code,relative_humidity_2m&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max&timezone=Europe%2FParis&temperature_unit=fahrenheit&forecast_days=1";
+    const res = await fetch(url);
+    if (!res.ok) throw new Error("weather fetch failed");
+    return res.json();
+  }
+
+  function clothingAdvice(tempF, precipProb, tempMin) {
+    const tips = [];
+    if (precipProb >= 40) tips.push("☔ Alta probabilidad de lluvia — lleven paraguas compacto o rompevientos.");
+    else if (precipProb >= 15) tips.push("🌦️ Chance baja de lluvia — no está de más llevar un paraguas pequeño por si acaso.");
+    else tips.push("🌂 Baja probabilidad de lluvia hoy.");
+
+    if (tempF >= 82) tips.push("🥵 Va a hacer calor — ropa ligera y transpirable, agua, protector solar.");
+    else if (tempF <= 65) tips.push("🧥 Fresco para julio — lleven una capa/chaqueta ligera.");
+    else tips.push("👕 Temperatura agradable — ropa ligera de día.");
+
+    if (tempMin && tempMin <= 60) tips.push("🌙 Refresca bastante en la noche — buena idea llevar algo con mangas.");
+
+    return tips.join(" ");
+  }
+
+  async function handleWeatherQuery() {
+    addBotMsg("🔎 Consultando el clima de París en vivo...", false);
+    const body = document.getElementById('botBody');
+    try {
+      const data = await fetchParisWeather();
+      // remove the "consultando" placeholder (last bot msg)
+      body.removeChild(body.lastChild);
+
+      const cur = data.current;
+      const daily = data.daily;
+      const [desc, icon] = WEATHER_CODES[cur.weather_code] || ["Condición variable", "🌡️"];
+      const tempF = Math.round(cur.temperature_2m);
+      const tempMax = Math.round(daily.temperature_2m_max[0]);
+      const tempMin = Math.round(daily.temperature_2m_min[0]);
+      const precipProb = daily.precipitation_probability_max[0];
+
+      const summary = `${icon} Ahora mismo en París: ${tempF}°F, ${desc}. Hoy: máx ${tempMax}°F / mín ${tempMin}°F, ${precipProb}% de probabilidad de lluvia.\n\n${clothingAdvice(tempF, precipProb, tempMin)}`;
+      addBotMsg(summary, false, ["panel-kit"]);
+    } catch (err) {
+      body.removeChild(body.lastChild);
+      addBotMsg("No pude conectar con el servicio de clima en este momento (revisen su conexión a internet). Como referencia general: julio en París ronda 68-86°F, con lluvias cortas ocasionales.", false, ["panel-kit"]);
+    }
+  }
+
+  const WEATHER_KEYWORDS = ["clima hoy","va a llover","lluvia hoy","que me pongo","qué me pongo","tiempo en paris","tiempo hoy","clima en paris","va a hacer frio","va a hacer frío","va a hacer calor","pronostico","pronóstico"];
 </script>
 
 </body>
