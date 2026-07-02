@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>París · Disney · Italia — Guía de Viaje 2026</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap');
+
+:root{
+  --cream:#FBF3E7;
+  --cream-deep:#F2E4C9;
+  --cream-deeper:#E9D8B3;
+  --ink:#22303F;
+  --ink-soft:#5B6B7A;
+  --guimard:#1E5B49;
+  --guimard-deep:#123D30;
+  --guimard-tint:#E4EFE9;
+  --gold:#E8A93B;
+  --gold-deep:#C6862A;
+  --rose:#E1637A;
+  --rose-deep:#C14A61;
+  --rose-tint:#FBEAEE;
+  --terracotta:#D9764A;
+  --terracotta-deep:#B85A32;
+  --terracotta-tint:#FBEDE3;
+  --line:#DED0B0;
+  --shadow:0 4px 18px rgba(34,48,63,0.10);
+}
+
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--cream);
+  color:var(--ink);
+  font-family:'Work Sans', sans-serif;
+  line-height:1.5;
+  padding-bottom:60px;
+}
+[hidden]{display:none !important;}
+
+h1,h2,h3,h4{ font-family:'Bebas Neue', sans-serif; letter-spacing:0.03em; font-weight:400; }
+.serif{ font-family:'Cormorant Garamond', serif; }
+.mono{ font-family:'IBM Plex Mono', monospace; }
+
+/* ---------- HERO ---------- */
+.hero{
+  position:relative;
+  background:linear-gradient(160deg, var(--guimard) 0%, var(--guimard-deep) 100%);
+  color:var(--cream);
+  padding:38px 20px 70px;
+  overflow:hidden;
+}
+.hero::after{
+  content:"";
+  position:absolute; left:0; right:0; bottom:-1px; height:36px;
+  background:var(--cream);
+  clip-path: polygon(0% 100%, 0% 40%, 4% 55%, 8% 40%, 12% 55%, 16% 40%, 20% 55%, 24% 40%, 28% 55%, 32% 40%, 36% 55%, 40% 40%, 44% 55%, 48% 40%, 52% 55%, 56% 40%, 60% 55%, 64% 40%, 68% 55%, 72% 40%, 76% 55%, 80% 40%, 84% 55%, 88% 40%, 92% 55%, 96% 40%, 100% 55%, 100% 100%);
+}
+.hero-badge{
+  display:inline-flex; align-items:center; gap:8px;
+  border:1.5px solid var(--gold); color:var(--gold);
+  padding:5px 14px; border-radius:999px; font-family:'IBM Plex Mono', monospace;
+  font-size:11px; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:14px;
+}
+.hero h1{ font-size:42px; line-height:1.02; color:var(--cream); }
+.hero h1 span{ color:var(--gold); }
+.hero p.tagline{ font-family:'Cormorant Garamond', serif; font-style:italic; font-size:19px; color:#DCE9E2; margin-top:10px; max-width:460px;}
+.hero .eiffel{ position:absolute; right:-10px; top:10px; opacity:0.16; width:150px; }
+
+/* ---------- NAV (metro roundels) ---------- */
+.nav-wrap{
+  position:sticky; top:0; z-index:50;
+  background:rgba(251,243,231,0.94); backdrop-filter:blur(6px);
+  border-bottom:1px solid var(--line);
+  padding:10px 14px;
+  display:flex; gap:10px; overflow-x:auto;
+}
+.nav-wrap::-webkit-scrollbar{display:none;}
+.roundel{
+  display:flex; align-items:center; gap:8px;
+  padding:7px 14px 7px 7px; border-radius:999px;
+  border:1.5px solid transparent; background:transparent;
+  cursor:pointer; white-space:nowrap; transition:all .2s;
+  font-family:'Work Sans', sans-serif; font-weight:600; font-size:13px; color:var(--ink-soft);
+}
+.roundel .num{
+  width:26px; height:26px; border-radius:50%; color:#fff;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue', sans-serif; font-size:14px; flex-shrink:0;
+}
+.roundel.active{ border-color:currentColor; background:var(--cream-deep); color:var(--ink); }
+.roundel[data-c="1"] .num{ background:var(--gold); }
+.roundel[data-c="2"] .num{ background:#5B93B0; }
+.roundel[data-c="3"] .num{ background:var(--guimard); }
+.roundel[data-c="4"] .num{ background:var(--rose); }
+.roundel[data-c="5"] .num{ background:var(--terracotta); }
+.roundel[data-c="6"] .num{ background:var(--ink); }
+
+main{ max-width:760px; margin:0 auto; padding:26px 18px 10px; }
+.section-title{ font-size:30px; color:var(--ink); margin-bottom:4px; }
+.section-sub{ font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--ink-soft); font-size:17px; margin-bottom:22px; }
+
+.divider{ display:flex; align-items:center; gap:10px; margin:30px 0 18px; color:var(--gold-deep); }
+.divider::before, .divider::after{ content:""; flex:1; height:1px; background:var(--line); }
+.divider i{ font-size:13px; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="eiffel" viewBox="0 0 100 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 4 L58 60 L72 150 L64 150 L54 80 L50 100 L46 80 L36 150 L28 150 L42 60 Z" stroke="#F4D58D" stroke-width="1.6"/>
+    <path d="M38 40 L62 40 M34 70 L66 70 M30 100 L70 100" stroke="#F4D58D" stroke-width="1.2"/>
+  </svg>
+  <span class="hero-badge"><i class="fa-solid fa-compass"></i> Guía completa de viaje · Julio 2026</span>
+  <h1>París <span>·</span> Disney <span>·</span> Italia</h1>
+  <p class="tagline">Todo lo que mamá e hija necesitan — hora por hora, euro por euro, y por qué cada lugar importa.</p>
+</header>
+
+<nav class="nav-wrap" id="nav">
+  <button class="roundel active" data-c="1" data-target="panel-inicio"><span class="num">1</span>Inicio</button>
+  <button class="roundel" data-c="2" data-target="panel-kit"><span class="num">2</span>Kit práctico</button>
+  <button class="roundel" data-c="3" data-target="panel-antes"><span class="num">3</span>Antes · París</button>
+  <button class="roundel" data-c="4" data-target="panel-evento"><span class="num">4</span>Evento · Disney</button>
+  <button class="roundel" data-c="5" data-target="panel-despues"><span class="num">5</span>Después · Italia</button>
+  <button class="roundel" data-c="6" data-target="panel-guia"><span class="num">6</span>Guía de supervivencia</button>
+</nav>
+
+<main id="mainContent">
+<style>
+/* ---------- SUMMARY TABLE (inicio) ---------- */
+.summary-grid{ display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+.summary-row{
+  display:flex; align-items:center; gap:14px;
+  background:#fff; border:1px solid var(--line); border-radius:14px;
+  padding:14px 16px; box-shadow:var(--shadow);
+}
+.summary-row .date{
+  font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600;
+  color:var(--guimard-deep); background:var(--guimard-tint); padding:6px 10px; border-radius:8px; white-space:nowrap;
+}
+.summary-row .what{ font-size:14.5px; color:var(--ink); }
+.summary-row.warn .date{ background:var(--rose-tint); color:var(--rose-deep); }
+
+/* ---------- CARDS (activities) ---------- */
+.card{
+  background:#fff; border:1px solid var(--line); border-radius:16px;
+  padding:16px; box-shadow:var(--shadow); margin-bottom:12px;
+}
+.card-top{ display:flex; gap:12px; align-items:flex-start; }
+.card-icon{
+  width:42px; height:42px; border-radius:11px; flex-shrink:0;
+  background:var(--guimard); color:var(--gold);
+  display:flex; align-items:center; justify-content:center; font-size:17px;
+}
+.card-time{
+  font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.08em;
+  text-transform:uppercase; color:var(--gold-deep); font-weight:600; margin-bottom:2px;
+}
+.card-title{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:19px; color:var(--ink); line-height:1.2; margin-bottom:5px;}
+.card-meta{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+.tag{
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:12px; font-family:'IBM Plex Mono', monospace; font-weight:600;
+  background:var(--cream-deep); color:var(--ink-soft); padding:4px 9px; border-radius:7px;
+}
+.tag.price{ background:var(--gold); color:#4A3208; }
+.card-how{ font-size:13.5px; color:var(--ink-soft); line-height:1.55; }
+
+/* ---------- POSTCARD (why it matters) ---------- */
+details.postcard{ margin-top:12px; }
+details.postcard summary{
+  list-style:none; cursor:pointer; display:inline-flex; align-items:center; gap:8px;
+  font-family:'IBM Plex Mono', monospace; font-size:12px; font-weight:600; letter-spacing:0.04em;
+  color:var(--rose-deep); background:var(--rose-tint); border:1.5px dashed var(--rose);
+  padding:7px 13px; border-radius:999px;
+}
+details.postcard summary::-webkit-details-marker{ display:none; }
+details.postcard summary i{ font-size:12px; }
+details.postcard[open] summary{ background:var(--rose); color:#fff; border-style:solid; }
+.postcard-body{
+  margin-top:10px; background:var(--rose-tint); border-left:4px solid var(--rose-deep);
+  border-radius:0 12px 12px 0; padding:14px 16px;
+}
+.postcard-body h5{
+  font-family:'Cormorant Garamond', serif; font-weight:700; font-style:italic; font-size:17px;
+  color:var(--rose-deep); margin-bottom:6px;
+}
+.postcard-body p{ font-size:14px; color:#5A2D36; line-height:1.6; }
+
+/* ---------- DAY TABS ---------- */
+.day-tabs{ display:flex; gap:8px; overflow-x:auto; padding-bottom:6px; margin-bottom:18px; }
+.day-tabs::-webkit-scrollbar{display:none;}
+.day-tab{
+  flex-shrink:0; min-width:108px; text-align:left;
+  background:#fff; border:2px solid var(--line); border-radius:12px; padding:9px 12px;
+  cursor:pointer; transition:all .2s;
+}
+.day-tab .d1{ font-family:'IBM Plex Mono', monospace; font-size:10px; font-weight:700; color:var(--ink-soft); text-transform:uppercase;}
+.day-tab .d2{ font-family:'Cormorant Garamond', serif; font-weight:600; font-size:15px; color:var(--ink); margin-top:1px;}
+.day-tab.active{ border-color:var(--guimard); background:var(--guimard-tint); }
+.day-tab.active .d1{ color:var(--guimard-deep); }
+#panel-despues .day-tab.active{ border-color:var(--terracotta); background:var(--terracotta-tint); }
+#panel-despues .day-tab.active .d1{ color:var(--terracotta-deep); }
+
+.day-panel{ display:none; }
+.day-panel.active{ display:block; }
+.day-header{ margin-bottom:14px; }
+.day-header h3{ font-size:24px; color:var(--ink); }
+.day-header p{ font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--ink-soft); font-size:15.5px; }
+
+/* ---------- ALERT BOX ---------- */
+.alert{
+  border-radius:14px; padding:14px 16px; margin:16px 0; display:flex; gap:12px;
+  border:1.5px solid var(--terracotta);
+  background:var(--terracotta-tint);
+}
+.alert i{ color:var(--terracotta-deep); font-size:17px; margin-top:2px; }
+.alert p{ font-size:13.8px; color:#5C3319; line-height:1.55; }
+.alert strong{ color:var(--terracotta-deep); }
+
+/* ---------- ITALY TOGGLE ---------- */
+.italy-toggle{ display:flex; gap:10px; margin-bottom:20px; }
+.italy-btn{
+  flex:1; padding:12px; border-radius:14px; border:2px solid var(--line);
+  background:#fff; cursor:pointer; text-align:center; transition:all .2s;
+}
+.italy-btn i{ font-size:20px; color:var(--terracotta); margin-bottom:4px; display:block;}
+.italy-btn span{ font-family:'Bebas Neue', sans-serif; font-size:17px; letter-spacing:0.04em; color:var(--ink);}
+.italy-btn.active{ border-color:var(--terracotta); background:var(--terracotta-tint); }
+.italy-content{ display:none; }
+.italy-content.active{ display:block; }
+
+/* ---------- COMPARISON TABLE ---------- */
+.compare{ width:100%; border-collapse:separate; border-spacing:0; background:#fff; border-radius:14px; overflow:hidden; border:1px solid var(--line); margin-top:10px; font-size:13.5px;}
+.compare th{ background:var(--guimard); color:var(--cream); font-family:'Work Sans'; font-weight:600; padding:10px; text-align:left; font-size:12.5px;}
+.compare td{ padding:10px; border-top:1px solid var(--line); color:var(--ink-soft);}
+.compare tr td:first-child{ font-weight:600; color:var(--ink); }
+
+/* ---------- ACCORDION (kit practico / guia) ---------- */
+details.acc{ background:#fff; border:1px solid var(--line); border-radius:14px; margin-bottom:10px; box-shadow:var(--shadow); overflow:hidden;}
+details.acc summary{
+  list-style:none; cursor:pointer; padding:15px 16px; display:flex; align-items:center; gap:12px;
+  font-family:'Cormorant Garamond', serif; font-weight:700; font-size:18px; color:var(--ink);
+}
+details.acc summary::-webkit-details-marker{display:none;}
+details.acc summary i.lead{
+  width:34px; height:34px; border-radius:9px; background:var(--guimard-tint); color:var(--guimard-deep);
+  display:flex; align-items:center; justify-content:center; font-size:14px; flex-shrink:0;
+}
+details.acc summary i.chev{ margin-left:auto; color:var(--ink-soft); transition:transform .2s; font-size:13px;}
+details.acc[open] summary i.chev{ transform:rotate(180deg); }
+.acc-body{ padding:0 16px 18px; font-size:14px; color:var(--ink-soft); line-height:1.65; }
+.acc-body p{ margin-bottom:10px; }
+.acc-body ul{ padding-left:20px; margin-bottom:10px; }
+.acc-body li{ margin-bottom:6px; }
+.acc-body strong{ color:var(--ink); }
+.mini-table{ width:100%; border-collapse:collapse; margin:10px 0; font-size:13px;}
+.mini-table th{ text-align:left; background:var(--cream-deep); padding:8px; font-weight:600; color:var(--ink);}
+.mini-table td{ padding:8px; border-top:1px solid var(--line); }
+
+.lang-table{ width:100%; border-collapse:collapse; margin-top:8px; }
+.lang-table td{ padding:8px 6px; border-top:1px solid var(--line); font-size:13.5px; }
+.lang-table td:first-child{ font-weight:600; }
+.lang-table td.fr{ color:var(--guimard-deep); }
+.lang-table td.it{ color:var(--terracotta-deep); }
+
+footer{ max-width:760px; margin:30px auto 0; padding:20px 18px; text-align:center; }
+footer p{ font-family:'Cormorant Garamond', serif; font-style:italic; color:var(--ink-soft); font-size:14px; }
+</style>
+
+<section id="panel-inicio">
+  <h2 class="section-title">Resumen del viaje</h2>
+  <p class="section-sub">Mamá, hija y amigas — Dance the World en Disneyland Paris</p>
+
+  <div class="summary-grid">
+    <div class="summary-row"><span class="date">10 jul</span><span class="what">Llegada a París</span></div>
+    <div class="summary-row"><span class="date">11–15 jul</span><span class="what"><strong>Segmento A</strong> — Exploración de París</span></div>
+    <div class="summary-row warn"><span class="date">13 jul</span><span class="what">⚠️ Torre Eiffel cerrada (excepcional) + Fuegos artificiales de la Fiesta Nacional esa noche</span></div>
+    <div class="summary-row warn"><span class="date">14 jul</span><span class="what">Fiesta Nacional de Francia — desfile militar en la mañana</span></div>
+    <div class="summary-row"><span class="date">16–20 jul</span><span class="what"><strong>Bloque fijo</strong> — Dance the World / Disneyland Paris</span></div>
+    <div class="summary-row"><span class="date">20–23/24 jul</span><span class="what"><strong>Segmento B</strong> — Milán+Como o Roma (elegir)</span></div>
+    <div class="summary-row"><span class="date">23/24 jul</span><span class="what">Vuelo de regreso a Puerto Rico DESDE Italia</span></div>
+  </div>
+
+  <div class="divider"><i class="fa-solid fa-fleur-de-lis"></i></div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-icon"><i class="fa-solid fa-map"></i></div>
+      <div>
+        <div class="card-title">Cómo usar esta guía</div>
+        <p class="card-how">
+          Usa la navegación de arriba (los círculos numerados, como las líneas del Metro de París) para moverte entre secciones.
+          Dentro de "Antes · París" y "Después · Italia" encontrarás pestañas por día. Cada actividad trae la info práctica
+          (hora, precio, cómo comprar) y, cuando aplica, un botón rosado <strong>"¿Por qué importa?"</strong> — tócalo para
+          revelar el contexto histórico que le da magnitud a lo que están viendo.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="panel-kit" hidden>
+  <h2 class="section-title">Kit práctico general</h2>
+  <p class="section-sub">Leer antes de viajar</p>
+
+  <details class="acc" open>
+    <summary><i class="fa-solid fa-passport lead"></i>Documentos<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <ul>
+        <li><strong>Pasaporte</strong> vigente con al menos 6 meses de validez + 1 copia física + 1 foto en el celular.</li>
+        <li>Con pasaporte de EE.UU./Puerto Rico: <strong>no se necesita visa</strong> para Francia ni Italia (ambos países Schengen), hasta 90 días de estadía turística.</li>
+        <li>Guarda las confirmaciones de todas las entradas en el celular — muchos lugares piden mostrar el código QR.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-euro-sign lead"></i>Dinero<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <ul>
+        <li>Avisa a tu banco/tarjeta que viajarás a Francia e Italia para evitar bloqueos por "actividad sospechosa".</li>
+        <li>Lleva 100-150€ por persona en efectivo para propinas, mercaditos o sitios sin tarjeta.</li>
+        <li>Tarjetas sin comisión internacional (Revolut, Chase Sapphire) ahorran bastante en 2 semanas de viaje.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-train-subway lead"></i>Transporte en París<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <p><strong>App imprescindible:</strong> "Île-de-France Mobilités" (oficial) — compra y valida boletos desde el celular.</p>
+      <p><strong>Pase recomendado:</strong> Paris Visite (zonas 1-5) — cubre metro, RER, bus, tram, y el trayecto al aeropuerto.</p>
+      <table class="mini-table">
+        <tr><th>Duración</th><th>Precio aprox./adulto</th></tr>
+        <tr><td>1 día</td><td>30,60€</td></tr>
+        <tr><td>2 días</td><td>47€</td></tr>
+        <tr><td>3 días</td><td>62€</td></tr>
+        <tr><td>5 días</td><td>78€</td></tr>
+      </table>
+      <p>⚠️ Aunque lo compren un miércoles, cuenta como "días consecutivos" desde que lo activan.</p>
+      <p><strong>Alternativa suelta:</strong> boleto Metro/RER = 2,50€ · Bus/Tram = 2,05€ (sistemas separados, no se transfiere de uno a otro).</p>
+      <p><strong>CDG al centro:</strong> RER B, ~14€/persona, 30-40 min hasta Gare du Nord. Sale cada 10-15 min, hasta 23:50h.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-shield-halved lead"></i>Seguridad básica<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <ul>
+        <li>Cuidado con carteristas en metro, RER B (ruta aeropuerto), Torre Eiffel y Louvre — bolso cerrado al frente.</li>
+        <li>Francia — emergencias: <strong>112</strong> (general), <strong>15</strong> (ambulancia), <strong>17</strong> (policía).</li>
+        <li>Italia — emergencias: <strong>112</strong> (general).</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-cloud-sun lead"></i>Clima y equipaje<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <p>Julio en París/Italia: 20-30°C, lluvias cortas ocasionales. Lleven capa ligera para la noche y un paraguas compacto.</p>
+      <p>Calzado cómodo es NO negociable — caminarán 15,000-20,000 pasos diarios fácilmente.</p>
+    </div>
+  </details>
+</section>
+
+<section id="panel-antes" hidden>
+  <h2 class="section-title">Antes · Exploración de París</h2>
+  <p class="section-sub">10 al 15 de julio — seis días para conocer la ciudad</p>
+
+  <div class="day-tabs" id="antesTabs">
+    <button class="day-tab active" data-day="a1"><span class="d1">Vie 10</span><span class="d2">Llegada</span></button>
+    <button class="day-tab" data-day="a2"><span class="d1">Sáb 11</span><span class="d2">Eiffel + Sena</span></button>
+    <button class="day-tab" data-day="a3"><span class="d1">Dom 12</span><span class="d2">Louvre</span></button>
+    <button class="day-tab" data-day="a4"><span class="d1">Lun 13</span><span class="d2">Cité + Fuegos</span></button>
+    <button class="day-tab" data-day="a5"><span class="d1">Mar 14</span><span class="d2">Fiesta Nacional</span></button>
+    <button class="day-tab" data-day="a6"><span class="d1">Mié 15</span><span class="d2">Versalles</span></button>
+  </div>
+
+  <!-- DAY 1 -->
+  <div class="day-panel active" id="a1">
+    <div class="day-header"><h3>Llegada a París</h3><p>Aterrizar, respirar, no correr</p></div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-plane-arrival"></i></div>
+        <div>
+          <div class="card-time">Aterrizaje</div>
+          <div class="card-title">RER B al centro de París</div>
+          <div class="card-meta"><span class="tag price">≈14€/persona</span></div>
+          <p class="card-how">Seguir letreros "RER B" desde llegadas. Comprar boleto en máquina (aceptan tarjeta) o taquilla. Validar antes de bajar al andén. 30-40 min hasta el centro.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> ¿Por qué el jet lag pega tan fuerte?</summary>
+        <div class="postcard-body">
+          <h5>El reloj interno no sabe que cruzaste el Atlántico</h5>
+          <p>Puerto Rico está 6 horas detrás de Francia en julio. El cuerpo cree que "son las 3pm" cuando en realidad es casi media noche allá. La regla de oro de cualquier viajera con experiencia: el primer día no se trata de ver cosas, se trata de exponerse a luz de sol y aguantar despiertas hasta una hora razonable — es la única forma real de resetear el reloj interno.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-bed"></i></div>
+        <div>
+          <div class="card-time">Tarde</div>
+          <div class="card-title">Check-in + caminata corta por el barrio</div>
+          <p class="card-how">Ubicar farmacia, panadería y estación de metro más cercana al hotel. Descansar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-camera"></i></div>
+        <div>
+          <div class="card-time">Noche</div>
+          <div class="card-title">Primera vista de la Torre Eiffel — Trocadéro</div>
+          <div class="card-meta"><span class="tag price">Gratis</span></div>
+          <p class="card-how">Cena temprana y ligera. Metro línea 9, estación Trocadéro, para ver la torre iluminada sin subir.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DAY 2 -->
+  <div class="day-panel" id="a2">
+    <div class="day-header"><h3>Torre Eiffel y Sena</h3><p>El símbolo que todo el mundo odiaba</p></div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-tower-observation"></i></div>
+        <div>
+          <div class="card-time">9:00–11:30am</div>
+          <div class="card-title">Torre Eiffel</div>
+          <div class="card-meta">
+            <span class="tag price">22,60€–36,70€/persona</span>
+            <span class="tag"><i class="fa-solid fa-globe"></i> toureiffel.paris</span>
+          </div>
+          <p class="card-how">2do piso (ascensor) ~22,60€ · Cima (ascensor) hasta 36,70€. Reservar con 60 días de antelación. Llegar 15-20 min antes de la hora reservada. Metro línea 6 (Bir-Hakeim) o línea 9 (Trocadéro).</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> La torre que iban a demoler</summary>
+        <div class="postcard-body">
+          <h5>De "farola trágica" a símbolo del mundo</h5>
+          <p>En 1889, para celebrar 100 años de la Revolución Francesa, Gustave Eiffel construyó esta torre con un permiso de SOLO 20 años — después había que demolerla. Los parisinos la odiaban: la llamaban "una farola trágica" y cientos de artistas firmaron cartas exigiendo tumbarla. Se salvó porque, justo a tiempo, descubrieron que servía como antena de radio militar.</p>
+          <p><strong>Dato que conecta con casa:</strong> el mismo Gustave Eiffel diseñó el esqueleto interno de la Estatua de la Libertad en Nueva York — la estructura de metal que la sostiene por dentro es suya.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-ship"></i></div>
+        <div>
+          <div class="card-time">2:30–3:30pm</div>
+          <div class="card-title">Crucero por el Sena</div>
+          <div class="card-meta"><span class="tag price">15–20€/persona</span></div>
+          <p class="card-how">Bateaux Parisiens o Bateaux-Mouches. Muelle a 2 min de la Torre Eiffel (Port de la Bourdonnais). Reservar online.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <p><strong>Importante:</strong> las entradas de ascensor a la Cima se agotan rápido en julio — resérvenlas apenas decidan las fechas exactas.</p>
+    </div>
+  </div>
+
+  <!-- DAY 3 -->
+  <div class="day-panel" id="a3">
+    <div class="day-header"><h3>Louvre y Tullerías</h3><p>De palacio de reyes a museo del pueblo</p></div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-landmark"></i></div>
+        <div>
+          <div class="card-time">9:00am–1:00pm</div>
+          <div class="card-title">Museo del Louvre</div>
+          <div class="card-meta">
+            <span class="tag price">32€/persona (no-UE)</span>
+            <span class="tag"><i class="fa-solid fa-globe"></i> tickets.louvre.fr</span>
+          </div>
+          <p class="card-how">Reserva OBLIGATORIA del 1 julio al 31 agosto. Menores de 18: gratis (igual reservan horario). Entrar por Carrousel du Louvre (99 Rue de Rivoli) — menos fila que la pirámide. Metro líneas 1/7, Palais Royal – Musée du Louvre. Enfocarse en: Mona Lisa, Venus de Milo, Victoria de Samotracia.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> El palacio que le quitaron al rey</summary>
+        <div class="postcard-body">
+          <h5>De residencia real a museo del pueblo</h5>
+          <p>Antes de ser museo, el Louvre fue literalmente donde vivían los reyes de Francia. Cuando la Revolución Francesa decapitó a la monarquía en 1789, la nueva república abrió el palacio del rey y su colección de arte al público en 1793 — una idea radical para la época: el arte ya no le pertenecía a un rey, le pertenecía "al pueblo".</p>
+          <p>Sobre la Mona Lisa: no siempre fue tan famosa. Se volvió ícono mundial en gran parte porque en 1911 alguien la ROBÓ (un trabajador italiano que pensaba que debía estar en Italia) — el robo apareció en periódicos de todo el mundo y la convirtió en la pintura más famosa del planeta.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-tree"></i></div>
+        <div>
+          <div class="card-time">2:30–4:30pm</div>
+          <div class="card-title">Jardín de las Tullerías + Place de la Concorde</div>
+          <div class="card-meta"><span class="tag price">Gratis</span></div>
+          <p class="card-how">Entrada directa desde el Louvre. Compras ligeras en Rue de Rivoli por la tarde/noche.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <p><strong>Cerrado los martes</strong> — por eso este día está programado en domingo.</p>
+    </div>
+  </div>
+
+  <!-- DAY 4 -->
+  <div class="day-panel" id="a4">
+    <div class="day-header"><h3>Isla de la Cité + Fuegos Artificiales</h3><p>Reyes santos, vitrales y pólvora</p></div>
+
+    <div class="alert">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <p><strong>Cambio importante de 2026:</strong> este año, de forma EXCEPCIONAL, los fuegos artificiales de la Fiesta Nacional se lanzan el 13 de julio (no el 14). La Torre Eiffel está cerrada al público todo el día 13 por este motivo (ya la visitaron el día 2). El desfile militar sí es el 14, como siempre.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-church"></i></div>
+        <div>
+          <div class="card-time">9:30am</div>
+          <div class="card-title">Notre-Dame</div>
+          <div class="card-meta">
+            <span class="tag price">Gratis (torres 16€)</span>
+            <span class="tag"><i class="fa-solid fa-globe"></i> resa.notredamedeparis.fr</span>
+          </div>
+          <p class="card-how">Reserva de horario abre solo 2-3 días antes. Sin reserva: fila general 30-60 min. Hombros y rodillas cubiertos. Metro línea 4, estación Cité.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> 200 años para construirla, 5 para reconstruirla</summary>
+        <div class="postcard-body">
+          <h5>La catedral que se niega a desaparecer</h5>
+          <p>La construcción de Notre-Dame empezó en 1163 y tomó casi 200 años en terminarse — los albañiles que la empezaron nunca vivieron para verla acabada. Aquí Napoleón se coronó a sí mismo Emperador en 1804 (le arrebató la corona al Papa de las manos: el poder ya no venía de la Iglesia, venía de él mismo). En 2019 un incendio destruyó gran parte del techo y la aguja — el mundo entero donó dinero para reconstruirla, y reabrió en 2024.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-gem"></i></div>
+        <div>
+          <div class="card-time">11:00am</div>
+          <div class="card-title">Sainte-Chapelle</div>
+          <div class="card-meta"><span class="tag price">~13€/persona</span><span class="tag"><i class="fa-solid fa-globe"></i> sainte-chapelle.fr</span></div>
+          <p class="card-how">Reservar con antelación, entrada por franjas horarias. RER B/C, Saint-Michel–Notre-Dame.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> Una corona que costó más que el edificio</summary>
+        <div class="postcard-body">
+          <h5>Luz de colores para parecer un rey santo</h5>
+          <p>El rey Luis IX (después canonizado como "San Luis") construyó esta capilla en la década de 1240 solo para guardar lo que él creía era la Corona de Espinas de Jesucristo — y pagó por esa reliquia TRES VECES más de lo que costó construir toda la capilla. Los 15 vitrales son la mayor superficie de vidrio medieval que sobrevive en el mundo.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-ice-cream"></i></div>
+        <div>
+          <div class="card-time">2:00–4:00pm</div>
+          <div class="card-title">Île Saint-Louis — helado en Berthillon</div>
+          <div class="card-meta"><span class="tag price">~5-8€</span></div>
+          <p class="card-how">31 Rue Saint-Louis en l'Île. Sin reserva.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-burst"></i></div>
+        <div>
+          <div class="card-time">8:00–11:35pm</div>
+          <div class="card-title">Fuegos artificiales — Torre Eiffel</div>
+          <div class="card-meta"><span class="tag price">Gratis</span></div>
+          <p class="card-how">Llegar a Trocadéro o Champ de Mars con MÍNIMO 3 horas de anticipación. Fuegos 11:00-11:35pm. Designen punto de encuentro claro por si se separan. Revisen la app RATP esa tarde por posibles cierres de estaciones. Lleven agua y algo de comer.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> ¿Por qué es el 13 y no el 14 este año?</summary>
+        <div class="postcard-body">
+          <h5>Un momento de reflexión</h5>
+          <p>Este 2026 es una excepción: los fuegos se adelantaron al 13 de julio en honor al 10mo aniversario del atentado de Niza (14 julio 2016), dejando el día 14 como un momento de reflexión. El desfile militar del día siguiente sí sigue siendo el 14, como cada año desde 1880.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- DAY 5 -->
+  <div class="day-panel" id="a5">
+    <div class="day-header"><h3>Fiesta Nacional de Francia</h3><p>El día que Francia se volvió república</p></div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-place-of-worship"></i></div>
+        <div>
+          <div class="card-time">9:00–11:00am</div>
+          <div class="card-title">Montmartre + Sacré-Cœur</div>
+          <div class="card-meta"><span class="tag price">Gratis</span></div>
+          <p class="card-how">Ir temprano (antes de multitudes). Metro línea 12, estación Abbesses, o línea 2 (Anvers) + funicular incluido en Paris Visite.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> Una basílica construida por culpa (y por artistas rebeldes)</summary>
+        <div class="postcard-body">
+          <h5>Penitencia colectiva y cuna del Cubismo</h5>
+          <p>El Sacré-Cœur se construyó después de que Francia perdiera humillantemente la guerra contra Prusia en 1871 — la basílica es, literalmente, un "perdón" colectivo pagado con donaciones del pueblo. Montmartre en sí quedaba fuera de París en esa época, así que era barato — por eso se llenó de artistas pobres como Picasso, Van Gogh y Renoir, que ahí mismo inventaron movimientos como el Cubismo.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-star"></i></div>
+        <div>
+          <div class="card-time">10:00am–12:00pm (opcional)</div>
+          <div class="card-title">Desfile militar — Champs-Élysées</div>
+          <div class="card-meta"><span class="tag price">Gratis</span></div>
+          <p class="card-how">Multitudinario — llegar desde las 8am para buen lugar. Alternativa: verlo por TV/streaming en France 2.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> El 4 de julio de Francia — pero más violento</summary>
+        <div class="postcard-body">
+          <h5>Cuando el pueblo le arrebató el poder al rey</h5>
+          <p>El 14 de julio de 1789, una multitud tomó la prisión de la Bastilla en París. La prisión casi no tenía prisioneros ese día — lo que importaba era el SÍMBOLO: por primera vez, el pueblo le quitaba el poder al rey por la fuerza. De ahí nació la Revolución Francesa, que terminó con la monarquía absoluta y cuyo lema "Libertad, Igualdad, Fraternidad" influyó ideas de derechos humanos en todo el mundo, incluyendo movimientos independentistas en América Latina.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-anchor"></i></div>
+        <div>
+          <div class="card-time">2:30–4:30pm (opcional)</div>
+          <div class="card-title">Museo del Titanic — La Villette</div>
+          <div class="card-meta"><span class="tag price">26,25€ adulto / 18,50€ niño</span><span class="tag"><i class="fa-solid fa-globe"></i> legendedutitanic.com</span></div>
+          <p class="card-how">Confirmado ABIERTO el 14 de julio (excepción de feriados). Duración 90 min. Metro línea 5, Porte de Pantin.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> La tragedia que expuso las clases sociales</summary>
+        <div class="postcard-body">
+          <h5>No solo un iceberg — un problema de clase</h5>
+          <p>El Titanic no solo se hundió por un iceberg — se hundió mal. Los botes salvavidas alcanzaban para menos de la mitad de los pasajeros, y las probabilidades de sobrevivir dependían muchísimo de la clase en la que viajabas: la mayoría de primera clase sobrevivió, la mayoría de tercera clase no.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- DAY 6 -->
+  <div class="day-panel" id="a6">
+    <div class="day-header"><h3>Versalles + traslado a Disneyland</h3><p>Cómo un palacio controlaba a todo un país</p></div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-chess-king"></i></div>
+        <div>
+          <div class="card-time">9:00am–4:00pm</div>
+          <div class="card-title">Palacio de Versalles</div>
+          <div class="card-meta">
+            <span class="tag price">~32€/persona (Passport)</span>
+            <span class="tag"><i class="fa-solid fa-globe"></i> chateauversailles.fr</span>
+          </div>
+          <p class="card-how">Reserva de horario obligatoria. RER C hasta "Versailles Château – Rive Gauche" (40-50 min, salir 7:45-8:15am). Trianones abren 12:00pm. Palacio cerrado los LUNES.</p>
+        </div>
+      </div>
+      <details class="postcard">
+        <summary><i class="fa-solid fa-stamp"></i> Un palacio como arma política</summary>
+        <div class="postcard-body">
+          <h5>La jaula de oro del Rey Sol</h5>
+          <p>Luis XIV, el "Rey Sol", no construyó Versalles solo para lucirse — lo usó como una jaula de oro para controlar a la nobleza. Obligaba a los nobles más poderosos a vivir ahí, bajo su mirada, en rituales carísimos y agotadores, para que no tuvieran tiempo ni dinero de conspirar en sus propios territorios. La Galería de los Espejos era un alarde de poder económico — Francia tuvo que robarse los secretos de fabricación de espejos de Venecia para construirla. Ese mismo salón, en 1919, fue donde se firmó el Tratado de Versalles que terminó la Primera Guerra Mundial.</p>
+        </div>
+      </details>
+    </div>
+
+    <div class="alert">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      <p><strong>Alerta de transporte:</strong> obras programadas en el RER C entre Paris Austerlitz y Javel del 15 julio al 26 agosto — podría afectar el tramo por Champ de Mars-Tour Eiffel. Verificar app RATP/SNCF 2-3 días antes. Plan B: Transilien línea N desde Gare Montparnasse hasta Versailles Chantiers, o bus 171 desde Pont de Sèvres.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-top">
+        <div class="card-icon"><i class="fa-solid fa-bus"></i></div>
+        <div>
+          <div class="card-time">Noche</div>
+          <div class="card-title">Traslado a zona Disneyland Paris</div>
+          <p class="card-how">RER A dirección "Marne-la-Vallée Chessy". Para estar listas el 16 con check-in 3:00pm en Hotel Cheyenne.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="panel-evento" hidden>
+  <h2 class="section-title">Bloque fijo · Dance the World</h2>
+  <p class="section-sub">16 al 20 de julio — Disneyland Paris (ya organizado por el evento)</p>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-icon"><i class="fa-solid fa-hotel"></i></div>
+      <div>
+        <div class="card-time">16 julio</div>
+        <div class="card-title">Check-in Hotel Cheyenne + ensayo general</div>
+        <p class="card-how">Encuentro 2:00pm en el lobby, check-in 3:00pm. Ensayo general 6:00-8:00pm en Newport Bay Club Ballroom.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-icon"><i class="fa-solid fa-star"></i></div>
+      <div>
+        <div class="card-time">17 julio</div>
+        <div class="card-title">Disneyland Park + Parade + Stage Show</div>
+        <p class="card-how">Disneyland Park 9:00am. Parade 11:00am. Stage Show en Videopolis Theater (hora TBA). Park hopper requerido.</p>
+      </div>
+    </div>
+    <details class="postcard">
+      <summary><i class="fa-solid fa-stamp"></i> El parque que Francia no quería</summary>
+      <div class="postcard-body">
+        <h5>De "Chernóbil cultural" a ícono turístico</h5>
+        <p>Cuando Disneyland Paris abrió en 1992, gran parte de la prensa e intelectuales franceses lo recibieron con horror — un director de teatro lo llamó "un Chernóbil cultural", temiendo una invasión de la cultura estadounidense. Hoy, más de 30 años después, es uno de los destinos turísticos más visitados de toda Europa — una lección de que las culturas no se "pierden" por convivir con otras, se mezclan.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-icon"><i class="fa-solid fa-calendar-day"></i></div>
+      <div>
+        <div class="card-time">18 julio</div>
+        <div class="card-title">Día completo en Disneyland</div>
+        <p class="card-how">9:00am. "Parade Rain Day" — si llueve el día 17, la parada se mueve a este día.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-icon"><i class="fa-solid fa-music"></i></div>
+      <div>
+        <div class="card-time">19 julio</div>
+        <div class="card-title">Rooftop Performance — Musée du Quai Branly</div>
+        <p class="card-how">3:30pm encuentro (51 Quai Jacques Chirac). 4:30pm show. 4:45-5:30pm recepción de postres.</p>
+      </div>
+    </div>
+    <details class="postcard">
+      <summary><i class="fa-solid fa-stamp"></i> Un museo poco común</summary>
+      <div class="postcard-body">
+        <h5>El museo que mira fuera de Europa</h5>
+        <p>El Musée du Quai Branly, donde se presentan, es distinto a casi todos los museos "clásicos" de París: está dedicado a arte y objetos de África, Asia, Oceanía y las Américas indígenas — una forma de Francia de reconocer culturas que históricamente quedaron fuera de sus grandes museos como el Louvre.</p>
+      </div>
+    </details>
+  </div>
+
+  <div class="card">
+    <div class="card-top">
+      <div class="card-icon"><i class="fa-solid fa-door-open"></i></div>
+      <div>
+        <div class="card-time">20 julio</div>
+        <div class="card-title">Check-out</div>
+        <p class="card-how">11:00am. Entrada libre a los parques para quien se quede ese día.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="panel-despues" hidden>
+  <h2 class="section-title">Después · Italia</h2>
+  <p class="section-sub">20 al 23/24 de julio — vuelo de regreso directo desde Italia</p>
+
+  <div class="alert">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    <p><strong>Alerta de reservas:</strong> las entradas de La Última Cena de Da Vinci se liberan por bloques de 3-4 meses y se agotan en minutos. Reserven esto ANTES que cualquier otra cosa. Lo mismo aplica, en menor medida, a Museos Vaticanos y Coliseo (~2 meses antes).</p>
+  </div>
+
+  <div class="italy-toggle">
+    <button class="italy-btn active" data-italy="milan"><i class="fa-solid fa-water"></i><span>Milán + Como</span></button>
+    <button class="italy-btn" data-italy="roma"><i class="fa-solid fa-landmark-dome"></i><span>Roma</span></button>
+  </div>
+
+  <!-- MILAN -->
+  <div class="italy-content active" id="milan">
+    <div class="day-tabs" id="milanTabs">
+      <button class="day-tab active" data-day="m1"><span class="d1">20 jul</span><span class="d2">Traslado</span></button>
+      <button class="day-tab" data-day="m2"><span class="d1">21 jul</span><span class="d2">Milán</span></button>
+      <button class="day-tab" data-day="m3"><span class="d1">22 jul</span><span class="d2">Lago di Como</span></button>
+      <button class="day-tab" data-day="m4"><span class="d1">23 jul</span><span class="d2">Vuelo a casa</span></button>
+    </div>
+
+    <div class="day-panel active" id="m1">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-plane-departure"></i></div><div>
+        <div class="card-time">11:00am–noche</div>
+        <div class="card-title">Check-out + vuelo Paris–Milán</div>
+        <p class="card-how">Check-out Hotel Cheyenne 11am. Traslado a CDG/Orly. Vuelo ~1h20 (confirmar con beneficios de empleada). Aeropuertos: Malpensa (MXP) o Linate (LIN). Check-in hotel cerca del Duomo o Brera.</p>
+      </div></div></div>
+    </div>
+
+    <div class="day-panel" id="m2">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-church"></i></div><div>
+        <div class="card-time">9:00am</div>
+        <div class="card-title">Duomo di Milano</div>
+        <div class="card-meta"><span class="tag price">~10-25€</span><span class="tag"><i class="fa-solid fa-globe"></i> duomomilano.it</span></div>
+        <p class="card-how">Catedral ~10€ / Catedral+Terraza ~25€.</p>
+      </div></div>
+        <details class="postcard"><summary><i class="fa-solid fa-stamp"></i> 600 años construyéndola</summary>
+          <div class="postcard-body"><h5>La obra que nunca se terminaba</h5>
+          <p>El Duomo de Milán se empezó en 1386 y no se consideró "terminado" hasta 1965 — casi 600 años después. Tiene más de 3.400 estatuas. En italiano existe la expresión "fabbrica del Duomo" para describir cualquier proyecto interminable.</p></div>
+        </details>
+      </div>
+
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-utensils"></i></div><div>
+        <div class="card-time">12:00–1:00pm</div>
+        <div class="card-title">La Última Cena de Da Vinci</div>
+        <div class="card-meta"><span class="tag price">15€/persona</span><span class="tag"><i class="fa-solid fa-globe"></i> cenacolovinciano.org</span></div>
+        <p class="card-how">RESERVAR CON MESES DE ANTICIPACIÓN. Única web oficial — cuidado con sitios falsos.</p>
+      </div></div>
+        <details class="postcard"><summary><i class="fa-solid fa-stamp"></i> La obra que empezó a morir apenas se pintó</summary>
+          <div class="postcard-body"><h5>Un experimento que sobrevivió una guerra</h5>
+          <p>Leonardo pintó esto entre 1495-1498 usando una técnica experimental (no fresco tradicional) que empezó a deteriorarse casi de inmediato — Leonardo siempre prefería experimentar aunque fuera a costa de la durabilidad. Sobrevivió por pura suerte: en la Segunda Guerra Mundial una bomba destruyó casi todo el edificio alrededor — pero la pared con la pintura quedó de pie.</p></div>
+        </details>
+      </div>
+
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-chess-rook"></i></div><div>
+        <div class="card-time">2:00–3:30pm</div>
+        <div class="card-title">Castello Sforzesco + Parque Sempione</div>
+        <p class="card-how">Metro línea 1, Cadorna o Cairoli.</p>
+      </div></div></div>
+
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-water"></i></div><div>
+        <div class="card-time">Noche</div>
+        <div class="card-title">Barrio Navigli — canales y cena</div>
+        <p class="card-how">Tram 9 o caminar ~25 min desde el centro.</p>
+      </div></div></div>
+    </div>
+
+    <div class="day-panel" id="m3">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-train"></i></div><div>
+        <div class="card-time">8:00am</div>
+        <div class="card-title">Tren a Varenna + ferry por el lago</div>
+        <div class="card-meta"><span class="tag price">~7-13€ tren / ~5-15€ ferry</span></div>
+        <p class="card-how">App Trenord (Milano Centrale/Garibaldi). Ferry en el embarcadero, empresa Navigazione Laghi. Castello di Vezio opcional (~7€).</p>
+      </div></div>
+        <details class="postcard"><summary><i class="fa-solid fa-stamp"></i> El spa de los romanos ricos</summary>
+          <div class="postcard-body"><h5>2.000 años escapando al lago</h5>
+          <p>Mucho antes de ser el lugar favorito de celebridades como George Clooney, el Lago di Como ya era el retiro de descanso de la aristocracia romana — el escritor Plinio el Joven tenía DOS villas ahí hace casi 2.000 años.</p></div>
+        </details>
+      </div>
+    </div>
+
+    <div class="day-panel" id="m4">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-plane"></i></div><div>
+        <div class="card-time">Mañana–noche</div>
+        <div class="card-title">Vuelo a Puerto Rico desde Milán (MXP)</div>
+        <p class="card-how">Mañana libre — compras rápidas en Via Montenapoleone si sobra tiempo. Vuelo vía hub de American (Miami, JFK o Charlotte).</p>
+      </div></div></div>
+    </div>
+  </div>
+
+  <!-- ROMA -->
+  <div class="italy-content" id="roma">
+    <div class="day-tabs" id="romaTabs">
+      <button class="day-tab active" data-day="r1"><span class="d1">20 jul</span><span class="d2">Traslado</span></button>
+      <button class="day-tab" data-day="r2"><span class="d1">21 jul</span><span class="d2">Roma Antigua</span></button>
+      <button class="day-tab" data-day="r3"><span class="d1">22 jul</span><span class="d2">Vaticano</span></button>
+      <button class="day-tab" data-day="r4"><span class="d1">23 jul</span><span class="d2">Vuelo a casa</span></button>
+    </div>
+
+    <div class="day-panel active" id="r1">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-plane-departure"></i></div><div>
+        <div class="card-time">11:00am–noche</div>
+        <div class="card-title">Check-out + vuelo Paris–Roma</div>
+        <p class="card-how">Check-out Hotel Cheyenne 11am. Vuelo ~2h. Aeropuerto Fiumicino (FCO). Check-in hotel, cena en Trastevere.</p>
+      </div></div></div>
+    </div>
+
+    <div class="day-panel" id="r2">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-landmark-dome"></i></div><div>
+        <div class="card-time">9:00am</div>
+        <div class="card-title">Coliseo + Foro Romano + Palatino</div>
+        <div class="card-meta"><span class="tag price">~18€/persona</span><span class="tag"><i class="fa-solid fa-globe"></i> ticketing.colosseo.it</span></div>
+        <p class="card-how">Única web oficial. Reservar 1-2 meses antes. Entrada nominativa (nombre debe coincidir con el pasaporte). Válida 24h para los 3 sitios.</p>
+      </div></div>
+        <details class="postcard"><summary><i class="fa-solid fa-stamp"></i> Entretenimiento gratis, pagado con guerra</summary>
+          <div class="postcard-body"><h5>Pan y circo, la estrategia política más antigua</h5>
+          <p>El Coliseo se construyó entre el 70-80 d.C. con dinero saqueado de la conquista de Jerusalén y trabajo forzado de prisioneros. Cabían 50.000-80.000 espectadores, y la entrada era GRATIS para los ciudadanos romanos — una estrategia política deliberada conocida como "pan y circo": mientras el pueblo tuviera comida y entretenimiento gratis, no se rebelaría contra el poder.</p></div>
+        </details>
+      </div>
+
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-coins"></i></div><div>
+        <div class="card-time">3:00–5:00pm</div>
+        <div class="card-title">Fontana di Trevi + Panteón + Piazza Navona</div>
+        <div class="card-meta"><span class="tag price">Gratis</span></div>
+        <p class="card-how">Todo caminable entre sí, 20-30 min entre puntos.</p>
+      </div></div></div>
+    </div>
+
+    <div class="day-panel" id="r3">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-church"></i></div><div>
+        <div class="card-time">8:00am</div>
+        <div class="card-title">Museos Vaticanos + Capilla Sixtina</div>
+        <div class="card-meta"><span class="tag price">~25€/persona</span><span class="tag"><i class="fa-solid fa-globe"></i> tickets.museivaticani.va</span></div>
+        <p class="card-how">Única web oficial — cuidado con webs falsas. Llegar temprano evita las peores multitudes. Abre L-S 8:00am-19:00.</p>
+      </div></div>
+        <details class="postcard"><summary><i class="fa-solid fa-stamp"></i> Cuatro años boca arriba</summary>
+          <div class="postcard-body"><h5>El escultor que no quería pintar</h5>
+          <p>Miguel Ángel se consideraba escultor, no pintor, y al principio se negó a pintar el techo de la Capilla Sixtina. Terminó pintándolo casi solo, durante 4 años (1508-1512), en posturas incómodas la mayor parte del tiempo — el esfuerzo le dañó la vista y la espalda de por vida. Hoy sigue siendo un lugar activo: ahí se encierran los cardenales a elegir un nuevo Papa (el famoso "humo blanco").</p></div>
+        </details>
+      </div>
+
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-cross"></i></div><div>
+        <div class="card-time">11:30am</div>
+        <div class="card-title">Basílica de San Pedro</div>
+        <div class="card-meta"><span class="tag price">Gratis (cúpula ~10€)</span></div>
+        <p class="card-how">Tarde libre — Escalinata de la Plaza de España, Via del Corso.</p>
+      </div></div></div>
+    </div>
+
+    <div class="day-panel" id="r4">
+      <div class="card"><div class="card-top"><div class="card-icon"><i class="fa-solid fa-plane"></i></div><div>
+        <div class="card-time">Mañana–noche</div>
+        <div class="card-title">Vuelo a Puerto Rico desde Roma (FCO)</div>
+        <p class="card-how">Villa Borghese o compras de último momento en la mañana. Vuelo vía hub de American.</p>
+      </div></div></div>
+    </div>
+  </div>
+
+  <div class="divider"><i class="fa-solid fa-scale-balanced"></i></div>
+  <h3 style="font-size:20px; margin-bottom:8px;">Comparativa rápida</h3>
+  <table class="compare">
+    <tr><th></th><th>Milán + Como</th><th>Roma</th></tr>
+    <tr><td>Vuelo desde París</td><td>Más corto (1h20)</td><td>Un poco más largo (2h)</td></tr>
+    <tr><td>Ritmo</td><td>Ciudad + lago relajado</td><td>Histórica, más caminata/museos</td></tr>
+    <tr><td>Ideal para</td><td>Fotos, paisaje, mezcla</td><td>Historia, arte, Italia "clásica"</td></tr>
+    <tr><td>Reserva más crítica</td><td>Última Cena (meses antes)</td><td>Coliseo + Vaticano (1-2 meses antes)</td></tr>
+    <tr><td>Costo aprox. entradas</td><td>~50-60€/persona</td><td>~45-55€/persona</td></tr>
+  </table>
+</section>
+
+<section id="panel-guia" hidden>
+  <h2 class="section-title">Guía de supervivencia</h2>
+  <p class="section-sub">Apps, carteristas y diferencias culturales — lo que nadie explica la primera vez</p>
+
+  <details class="acc" open>
+    <summary><i class="fa-solid fa-mobile-screen-button lead"></i>Apps para iPhone — descargar ANTES de viajar<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <table class="mini-table">
+        <tr><th>App</th><th>Para qué</th></tr>
+        <tr><td><strong>Île-de-France Mobilités</strong></td><td>App oficial de transporte de París — comprar y guardar el Paris Visite</td></tr>
+        <tr><td><strong>Citymapper / Google Maps</strong></td><td>Rutas puerta a puerta combinando metro + caminata</td></tr>
+        <tr><td><strong>Trenord</strong></td><td>Trenes regionales en Italia (Milán-Como)</td></tr>
+        <tr><td><strong>RATP</strong></td><td>Estado de líneas en tiempo real, cierres, alertas</td></tr>
+      </table>
+      <p><strong>Mapas offline:</strong> abrir Google Maps → foto de perfil → "Mapas sin conexión" → descargar el área de París (y luego Milán/Roma). Esto se hace en CASA, con wifi, ANTES de viajar.</p>
+      <p><strong>Google Translate:</strong> descargar los paquetes de francés e italiano "sin conexión". La cámara traduce menús y letreros en vivo.</p>
+      <p><strong>Plan de datos:</strong> si no tienen plan internacional, una eSIM (Airalo, Holafly) instalada antes de salir de Puerto Rico da datos apenas aterrizan.</p>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-user-secret lead"></i>Cuidado con carteristas — consejos concretos<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <p>"Cuidado con los carteristas" sin más detalle no ayuda a nadie. Son profesionales, organizados y muy buenos en lo que hacen.</p>
+      <p><strong>Dónde ocurre más:</strong></p>
+      <ul>
+        <li><strong>RER B</strong> (ruta del aeropuerto CDG) — el lugar #1 reportado por turistas, sobre todo al llegar, cansadas y con maletas.</li>
+        <li><strong>Metro línea 1</strong> (Louvre, Concorde, Champs-Élysées) — muy transitada por turistas.</li>
+        <li>Alrededores de la Torre Eiffel y el Louvre.</li>
+        <li>La noche de los fuegos artificiales — multitud + oscuridad + gente distraída mirando el cielo.</li>
+      </ul>
+      <p><strong>Tácticas comunes:</strong></p>
+      <ul>
+        <li><strong>El grupo de las pulseras/firmas:</strong> alguien pide firmar algo mientras otra persona saca algo del bolso abierto.</li>
+        <li><strong>El toque distractor:</strong> alguien "sin querer" las choca y se disculpa mucho, mientras otra persona actúa durante la confusión.</li>
+        <li><strong>Celular sobre la mesa</strong> en una terraza abierta a la calle — una mano lo agarra desde afuera.</li>
+      </ul>
+      <p><strong>Reglas simples:</strong></p>
+      <ul>
+        <li>Celular nunca en bolsillo trasero ni visible sobre la mesa en terraza abierta.</li>
+        <li>Bolso cruzado al frente del cuerpo, especialmente en el metro.</li>
+        <li>Si alguien insiste demasiado con papeles/pulseras, alejarse sin pena.</li>
+        <li>Activar "Buscar mi iPhone" y anotar el IMEI de cada celular antes de viajar (Ajustes → General → Información).</li>
+        <li>Compartir ubicación en tiempo real entre el grupo con la app "Buscar" de Apple.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-globe-europe lead"></i>Diferencias culturales — para apreciar, no para criticar<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <p>Hay cosas que se sienten "raras" al principio, pero son simplemente la forma en que Europa hace las cosas. La pregunta útil no es "¿por qué no lo hacen bien?" sino "¿qué historia hay detrás de esto?"</p>
+      <ul>
+        <li><strong>El hielo:</strong> las bebidas casi nunca llegan cargadas de hielo. Pueden pedir "avec plus de glaçons" (Francia) o "con più ghiaccio" (Italia) — a veces lo traen, a veces no, y no es mala educación.</li>
+        <li><strong>El aire acondicionado:</strong> muchos hoteles europeos (sobre todo históricos) tienen AC más suave. Los edificios antiguos de piedra se mantienen frescos naturalmente. Abrir la ventana en la noche ayuda — Europa refresca bastante al anochecer, incluso en julio.</li>
+        <li><strong>El agua del grifo:</strong> potable y segura en Francia e Italia. Pedir "une carafe d'eau" o "acqua del rubinetto" es normal y gratis — el agua embotellada se cobra aparte.</li>
+        <li><strong>La velocidad del servicio:</strong> el mesero no trae la cuenta hasta que la pidan, aunque hayan terminado hace rato — no es mal servicio, es de mala educación "apurar" a los comensales.</li>
+        <li><strong>Baños públicos con tarifa:</strong> normal y esperado, no es un intento de cobrar de más.</li>
+        <li><strong>Tiendas cerradas domingos:</strong> tradición de balance vida-trabajo, no negligencia comercial.</li>
+      </ul>
+    </div>
+  </details>
+
+  <details class="acc">
+    <summary><i class="fa-solid fa-comments lead"></i>Frases básicas + propinas + presupuesto<i class="fa-solid fa-chevron-down chev"></i></summary>
+    <div class="acc-body">
+      <p><strong>Propinas:</strong> el servicio ya está incluido por ley en Francia e Italia. No es obligatorio, redondear es un gesto apreciado.</p>
+      <p><strong>Presupuesto de comida por persona:</strong> Desayuno 5-8€ · Almuerzo casual 12-18€ · Cena normal 20-35€ · Bebida en restaurante 3-5€</p>
+      <table class="lang-table">
+        <tr><td>Hola</td><td class="fr">Bonjour</td><td class="it">Buongiorno</td></tr>
+        <tr><td>Gracias</td><td class="fr">Merci</td><td class="it">Grazie</td></tr>
+        <tr><td>Por favor</td><td class="fr">S'il vous plaît</td><td class="it">Per favore</td></tr>
+        <tr><td>¿Dónde está...?</td><td class="fr">Où est...?</td><td class="it">Dov'è...?</td></tr>
+        <tr><td>La cuenta</td><td class="fr">L'addition, s'il vous plaît</td><td class="it">Il conto, per favore</td></tr>
+      </table>
+      <p style="margin-top:10px;"><strong>Enchufes:</strong> tipo C/E/F, 220-230V — necesitan adaptador (no siempre convertidor, revisen la letra pequeña del cargador).</p>
+    </div>
+  </details>
+</section>
+
+<footer>
+  <p>Itinerario preparado como guía flexible — verificar precios y horarios en las webs oficiales 1-2 semanas antes de cada actividad. Bon voyage, buon viaggio. 🌍</p>
+</footer>
+
+<script>
+  const roundels = document.querySelectorAll('.roundel');
+  const panels = {
+    'panel-inicio': document.getElementById('panel-inicio'),
+    'panel-kit': document.getElementById('panel-kit'),
+    'panel-antes': document.getElementById('panel-antes'),
+    'panel-evento': document.getElementById('panel-evento'),
+    'panel-despues': document.getElementById('panel-despues'),
+    'panel-guia': document.getElementById('panel-guia'),
+  };
+  roundels.forEach(btn => {
+    btn.addEventListener('click', () => {
+      roundels.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      Object.entries(panels).forEach(([id, el]) => {
+        if (id === btn.dataset.target) { el.hidden = false; } else { el.hidden = true; }
+      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  function wireDayTabs(tabsContainerId, panelPrefix) {
+    const container = document.getElementById(tabsContainerId);
+    if (!container) return;
+    const tabs = container.querySelectorAll('.day-tab');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        const dayId = tab.dataset.day;
+        container.parentElement.querySelectorAll('.day-panel').forEach(p => {
+          p.classList.toggle('active', p.id === dayId);
+        });
+      });
+    });
+  }
+  wireDayTabs('antesTabs', 'a');
+  wireDayTabs('milanTabs', 'm');
+  wireDayTabs('romaTabs', 'r');
+
+  const italyBtns = document.querySelectorAll('.italy-btn');
+  const italyContents = document.querySelectorAll('.italy-content');
+  italyBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      italyBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const target = btn.dataset.italy;
+      italyContents.forEach(c => c.classList.toggle('active', c.id === target));
+    });
+  });
+</script>
+
+</body>
+</html>
